@@ -1,0 +1,49 @@
+.MuiDialog-paperWidthSm {
+  max-width: none !important;
+  width: 1021px !important;
+  height: 646px !important;
+}
+
+.MuiPaper-root {
+  background-color: #383838 !important;
+}
+
+.MuiDialog-paper {
+  align-self: center !important;
+}
+
+.MuiDialog-paper {
+  overflow: hidden !important;
+}
+
+.MuiDialogContent-root {
+  overflow-y: hidden !important;
+}
+
+/* ///////////////////////////////////// */
+
+.PhoneInputInput {
+  flex: 1 1;
+  min-width: 0;
+  border: none;
+  /* height: "62px";
+  width: "439px"; */
+  background-color: "orange";
+}
+
+/* .PhoneInputInput {
+  flex: 1 1;
+  min-width: 0;
+  background: "orange" !important;
+} */
+
+input:focus-visible {
+  border: none;
+  text-decoration: none;
+}
+
+.PhoneInputCountryIcon {
+  height: 30px;
+  width: 36px;
+  border-radius: 5px;
+}

@@ -1,0 +1,12 @@
+.MuiDialog-paperWidthSm {
+  max-width: none !important;
+  width: 1021px !important;
+  border-radius: 16px !important;
+  height: 993px !important;
+}
+.MuiDialogContent-root {
+  overflow: hidden !important;
+}
+.MuiDialogContent-root {
+  padding: 0 !important;
+}

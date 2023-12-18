@@ -1,0 +1,36 @@
+/* .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
+    padding: 0 58px;
+} */
+
+.MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"]
+  .MuiAutocomplete-input:first-child {
+  padding-left: 47px !important;
+}
+
+#asynchronous-demo-popup {
+  background-color: #fff !important;
+}
+
+/* .MuiButtonBase-root
+  .MuiIconButton-root
+  .MuiAutocomplete-clearIndicator
+  .MuiAutocomplete-clearIndicatorDirty {
+  text-decoration: none !important;
+  display: block !important;
+} */
+
+/* .MuiButtonBase-root .MuiIconButton-root .MuiAutocomplete-clearIndicator {
+   display: none !important;
+} */
+
+/* .MuiIconButton-label {
+    display: none !important;
+} */
+
+/* .MuiTouchRipple-root {
+  display: none !important;
+} */
+
+/* .MuiSvgIcon-root .MuiSvgIcon-fontSizeSmall {
+  display: none !important;
+} */
