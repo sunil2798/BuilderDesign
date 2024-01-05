@@ -18,6 +18,7 @@ import Info from './component/arshad/Info';
 import TechDetail from './component/arshad/TechDetail';
 import Formikk from './component/arshad/Formikk';
 import Port from './component/Gupta/Port';
+import ProfileInfo from './component/vishal/ProfileInfo';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
         <Route path='/tech' element={<TechDetail />} />
         <Route path='/formik' element={<Formikk />} />
         <Route path='/port' element={<Port />} />
+        <Route path='/profileinfo' element={<ProfileInfo />} />
       </Routes>
     </BrowserRouter>
 
