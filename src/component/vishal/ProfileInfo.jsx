@@ -1,11 +1,43 @@
 import React, { Component } from "react";
+import "./profileInfo.css";
 import profileImg from "../../img/profileImg.png";
-import { Button, Typography } from "@material-ui/core";
+import { Box, Button, TextField, Typography } from "@material-ui/core";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import EditIcon from "@material-ui/icons/Edit";
+import CloseIcon from "@material-ui/icons/Close";
+import AddIcon from "@material-ui/icons/Add";
+import InstagramIcon from '@material-ui/icons/Instagram';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
 export default class ProfileInfo extends Component {
+  constructor() {
+    super();
+    this.state = {
+      close: false,
+      checked: true,
+
+    }
+  }
+
+  handleChange = (event) => {
+    this.setState((prevState) => ({
+      checked: !prevState.checked,
+    }));
+  };
+  handleClose = () => {
+    this.setState({close: false});
+    console.log("handle Close", this.state.close);
+  }
+  handleOpen = () => {
+    this.setState({
+      close: true
+    });
+    console.log("handle open", this.state.close);
+  }
+
   render() {
+    
+    // console.log("handle Close", this.state.close);
     return (
       <div style={{ height: "100%", width: "100%", overflow: "hidden" }}>
         <div style={webStyle.profileinfoDiv}>
@@ -66,10 +98,10 @@ export default class ProfileInfo extends Component {
         {/* ----------------------------------------------------------------------------------------------------- */}
         <div style={webStyle.worlInfoDiv}>
           <div style={webStyle.infoDiv}>
-            <Typography style={webStyle.info}>Info</Typography>
+            <Typography style={webStyle.info} onChange={this.handleClose}>Info</Typography>
           </div>
           <div style={webStyle.workDiv}>
-            <Typography style={webStyle.info}>Work</Typography>
+            <Typography style={webStyle.info} onChange={this.handleOpen}>Work</Typography>
           </div>
         </div>
         {/* ---------------------------------------------------- */}
@@ -129,7 +161,7 @@ export default class ProfileInfo extends Component {
             </div>
           </div>
         </div>
-        {/* ---------------------------------------------------- */}
+        {/* -------------------Availability start--------------------------------- */}
         <div style={webStyle.availabilityDiv}>
           <div style={webStyle.availabilityInnerDiv}>
             <Typography style={webStyle.availability}>Availability</Typography>
@@ -140,20 +172,530 @@ export default class ProfileInfo extends Component {
               </a>
             </Typography>
           </div>
-          <div style={webStyle.userDescInnerDiv}>
-            <Typography style={webStyle.userDescName}>
-              Open for opportunities.
-            </Typography>
-            <EditIcon style={webStyle.editIcon} />
-          </div>
+          <div style={{ width: "1112px", margin: "auto" }}>
+            <div style={webStyle.userDescOppDiv}>
+              <div style={{ display: "flex" }}>
+                <Typography style={webStyle.userDescOppName}>
+                  Open for opportunities.
+                </Typography>
+                <Typography style={webStyle.userDescSubName}>
+                  Are you interested in work either now or in the future?
+                </Typography>
+              </div>
+              {/* <EditIcon style={webStyle.editIcon} /> */}
+              <Box>
+                <label class="switch">
+                  <input type="checkbox"
+                    checked={this.state.checked}
+                    onChange={this.handleChange}
+                     />
+                  <span class="slider round"></span>
+                </label>
+              </Box>
+            </div>
 
-          <div style={{ marginTop: "80px" }}>
-            <Typography
-              style={{ borderBottom: "1px solid #D9D9D9", width: "1107px" }}
-            />
+            <div style={{ marginTop: "28px", marginBottom: "28px" }}>
+              <Typography
+                style={{ borderBottom: "1px solid #D9D9D9", width: "1107px" }}
+              />
+            </div>
+            <div>
+              <Typography style={webStyle.unavailability}>
+                Unavailability:
+              </Typography>
+              <div
+                style={{
+                  marginTop: "20px",
+                  marginBottom: "20px",
+                }}
+              >
+                <Typography
+                  style={{ borderBottom: "1px solid #D9D9D9", width: "1107px" }}
+                />
+              </div>
+              <div style={{ display: "inline-flex", width: "100%" }}>
+                <div style={{ width: "70%" }}>
+                  <TextField
+                    variant="outlined"
+                    placeholder="Unavailabile Form"
+                    style={{
+                      height: "33px",
+                      width: "360px",
+                      padding: "4px 8px 5px 8px",
+                      alignItems: "center",
+                      flexShrink: "0",
+                      borderRadius: "2px",
+                      boxSizing: "none",
+                    }}
+                  />
+                  <TextField
+                    variant="outlined"
+                    placeholder="Unavailabile Form"
+                    style={{
+                      padding: "4px 8px 5px 8px",
+                      alignItems: "center",
+                      flexShrink: "0",
+                      borderRadius: "2px",
+                    }}
+                  />
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    alignItems: "center",
+                    width: "30%",
+                  }}
+                >
+                  <CloseIcon
+                  onClick= {this.handleOpen}
+                    style={{
+                      height: "24px",
+                      width: "24px",
+                      flexShrink: "0",
+                      color: "#9B9B9D",
+                    }}
+                  />
+                </div>
+              </div>
+              <div style={{ marginTop: "12px" }}>
+                <Typography
+                  style={{ borderBottom: "1px solid #D9D9D9", width: "1107px" }}
+                />
+              </div>
+              <div style={{ marginTop: "12px", marginBottom: "12px" }}>
+                <AddIcon style={{ height: "36px", width: "36px" }} />
+              </div>
+              <div>
+                <Typography
+                  style={{ borderBottom: "1px solid #D9D9D9", width: "1107px" }}
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              marginTop: "32px",
+              padding: "16px 40px 27px 0px",
+              alignItems: "center",
+              width: "100%",
+              gap: "16px",
+            }}
+          >
+            <Button
+              style={{
+                height: "48px",
+                width: "104px",
+                color: "#FFF",
+                background: "#DFDFDF",
+              }}
+            >
+              Save
+            </Button>
           </div>
         </div>
-        {/* ---------------------------------------------------- */}
+        {/* -------------------Availability end--------------------------------- */}
+
+        {/* --------------------Experience start-------------------------------- */}
+        <div style={experienceStyle.experienceDiv}>
+          <div style={experienceStyle.experienceInnerDiv}>
+            <Typography style={experienceStyle.expeTitle}>
+              Experience
+            </Typography>
+            <AddIcon style={{ color: "#FFF", height: "30px", width: "30px" }} />
+          </div>
+          <div>
+            <div
+              style={{
+                height: "260px",
+                width: "1093px",
+                display: "flex",
+                gap: "75px",
+                margin: "auto",
+                marginTop: "50px",
+              }}
+            >
+              <div>
+                <img
+                  src={profileImg}
+                  alt="profileImage"
+                  style={{ height: "75px", width: "75px", fill: "#D9D9D9" }}
+                />
+              </div>
+              <div style={{ width: "100%" }}>
+                <div style={experienceStyle.expeNameDiv}>
+                  <Typography style={experienceStyle.tvr}>TVR</Typography>
+                  <EditIcon style={experienceStyle.expeEditIcon} />
+                </div>
+                <div>
+                  <Typography style={experienceStyle.profileTitle}>
+                    Exterior Designer
+                  </Typography>
+
+                  <div
+                    style={{
+                      color: "#9B9B9D",
+                      display: "flex",
+                      fontFamily: "Silka",
+                      fontSize: "14px",
+                      fontStyle: "normal",
+                      fontWeight: "500",
+                      lineHeight: "19.364px",
+                    }}
+                  >
+                    <Typography>Jan 2022 - Jan 2023 | 6 months</Typography>
+                    <LocationOnIcon
+                      style={{ marginLeft: "12px", marginRight: "5px" }}
+                    />
+                    <Typography>Coventry, UK</Typography>
+                  </div>
+                  <div
+                    style={{
+                      width: "651px",
+                      marginTop: "16px",
+                      marginBottom: "28px",
+                    }}
+                  >
+                    <Typography
+                      style={{
+                        color: "#000",
+                        fontFamily: "Silka",
+                        fontSize: "16px",
+                        fontStyle: "normal",
+                        fontWeight: "200",
+                        lineHeight: "normal",
+                        marginBottom: "28px",
+                      }}
+                    >
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Integer id erat auctor, rutrum ex id, tincidunt tellus.
+                      Duis id nunc in neque maximus interdum. Nunc viverra
+                      vestibulum neque et mollis. Sed a odio condimentum,
+                      volutpat ex eu, volutpat tortor. Duis imperdiet urna eget
+                      lacus sollicitudin, non accumsan lorem posuere. In hac
+                      habitasse platea dictumst. Ut tempus et justo ac
+                      facilisis.
+                    </Typography>
+                    <div>
+                      <Button variant="outlined" style={webStyle.skillsButtons}>
+                        Sketching
+                      </Button>
+                      <Button variant="outlined" style={webStyle.skillsButtons}>
+                        Blender
+                      </Button>
+                      <Button variant="outlined" style={webStyle.skillsButtons}>
+                        Photoshop
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div
+              style={{
+                height: "260px",
+                width: "1093px",
+                display: "flex",
+                gap: "75px",
+                margin: "auto",
+                marginTop: "50px",
+              }}
+            >
+              <div>
+                <img
+                  src={profileImg}
+                  alt="profileImage"
+                  style={{ height: "75px", width: "75px", fill: "#D9D9D9" }}
+                />
+              </div>
+              <div style={{ width: "100%" }}>
+                <div style={experienceStyle.expeNameDiv}>
+                  <Typography style={experienceStyle.tvr}>
+                    Mercedes Benz{" "}
+                  </Typography>
+                  <EditIcon style={experienceStyle.expeEditIcon} />
+                </div>
+                <div>
+                  <Typography style={experienceStyle.profileTitle}>
+                    Exterior Designer
+                  </Typography>
+
+                  <div
+                    style={{
+                      color: "#9B9B9D",
+                      display: "flex",
+                      fontFamily: "Silka",
+                      fontSize: "14px",
+                      fontStyle: "normal",
+                      fontWeight: "500",
+                      lineHeight: "19.364px",
+                    }}
+                  >
+                    <Typography>Jan 2022 - Jan 2023 | 6 months</Typography>
+                    <LocationOnIcon
+                      style={{ marginLeft: "12px", marginRight: "5px" }}
+                    />
+                    <Typography>Coventry, UK</Typography>
+                  </div>
+                  <div
+                    style={{
+                      width: "651px",
+                      marginTop: "16px",
+                      marginBottom: "28px",
+                    }}
+                  >
+                    <Typography
+                      style={{
+                        color: "#000",
+                        fontFamily: "Silka",
+                        fontSize: "16px",
+                        fontStyle: "normal",
+                        fontWeight: "200",
+                        lineHeight: "normal",
+                      }}
+                    >
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Integer id erat auctor, rutrum ex id, tincidunt tellus.
+                      Duis id nunc in neque maximus interdum. Nunc viverra
+                      vestibulum neque et mollis. Sed a odio condimentum,
+                      volutpat ex eu, volutpat tortor. Duis imperdiet urna eget
+                      lacus sollicitudin, non accumsan lorem posuere. In hac
+                      habitasse platea dictumst. Ut tempus et justo ac
+                      facilisis.
+                    </Typography>
+                    <div>
+                      <Button variant="outlined" style={webStyle.skillsButtons}>
+                        Sketching
+                      </Button>
+                      <Button variant="outlined" style={webStyle.skillsButtons}>
+                        Blender
+                      </Button>
+                      <Button variant="outlined" style={webStyle.skillsButtons}>
+                        Photoshop
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* --------------------Experience end-------------------------------- */}
+
+        {/* -----------------------Education start--------------------------------------------- */}
+        <div style={experienceStyle.experienceDiv}>
+          <div style={experienceStyle.experienceInnerDiv}>
+            <Typography style={experienceStyle.expeTitle}>Education</Typography>
+            <AddIcon style={{ color: "#FFF", height: "30px", width: "30px" }} />
+          </div>
+          <div>
+            <div
+              style={{
+                height: "260px",
+                width: "1093px",
+                display: "flex",
+                gap: "75px",
+                margin: "auto",
+                marginTop: "50px",
+              }}
+            >
+              <div>
+                <img
+                  src={profileImg}
+                  alt="profileImage"
+                  style={{ height: "75px", width: "75px", fill: "#D9D9D9" }}
+                />
+              </div>
+              <div style={{ width: "100%" }}>
+                <div style={experienceStyle.expeNameDiv}>
+                  <Typography style={experienceStyle.tvr}>
+                    Royal College of Art
+                  </Typography>
+                  <EditIcon style={experienceStyle.expeEditIcon} />
+                </div>
+                <div>
+                  <Typography style={experienceStyle.profileTitle}>
+                    MA Vehicle Design
+                  </Typography>
+
+                  <div
+                    style={{
+                      color: "#9B9B9D",
+                      display: "flex",
+                      fontFamily: "Silka",
+                      fontSize: "14px",
+                      fontStyle: "normal",
+                      fontWeight: "500",
+                      lineHeight: "19.364px",
+                    }}
+                  >
+                    <Typography>Jan 2022 - Jan 2023 | 6 months</Typography>
+                    <LocationOnIcon
+                      style={{ marginLeft: "12px", marginRight: "5px" }}
+                    />
+                    <Typography>Coventry, UK</Typography>
+                  </div>
+                  <div
+                    style={{
+                      width: "651px",
+                      marginTop: "16px",
+                      marginBottom: "28px",
+                    }}
+                  >
+                    <Typography
+                      style={{
+                        color: "#000",
+                        fontFamily: "Silka",
+                        fontSize: "16px",
+                        fontStyle: "normal",
+                        fontWeight: "200",
+                        lineHeight: "normal",
+                        marginBottom: "28px",
+                      }}
+                    >
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Integer id erat auctor, rutrum ex id, tincidunt tellus.
+                      Duis id nunc in neque maximus interdum. Nunc viverra
+                      vestibulum neque et mollis. Sed a odio condimentum,
+                      volutpat ex eu, volutpat tortor. Duis imperdiet urna eget
+                      lacus sollicitudin, non accumsan lorem posuere. In hac
+                      habitasse platea dictumst. Ut tempus et justo ac
+                      facilisis.
+                    </Typography>
+                    <div>
+                      <Button variant="outlined" style={webStyle.skillsButtons}>
+                        Sketching
+                      </Button>
+                      <Button variant="outlined" style={webStyle.skillsButtons}>
+                        Blender
+                      </Button>
+                      <Button variant="outlined" style={webStyle.skillsButtons}>
+                        Photoshop
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div
+              style={{
+                height: "260px",
+                width: "1093px",
+                display: "flex",
+                gap: "75px",
+                margin: "auto",
+                marginTop: "50px",
+              }}
+            >
+              <div>
+                <img
+                  src={profileImg}
+                  alt="profileImage"
+                  style={{ height: "75px", width: "75px", fill: "#D9D9D9" }}
+                />
+              </div>
+              <div style={{ width: "100%" }}>
+                <div style={experienceStyle.expeNameDiv}>
+                  <Typography style={experienceStyle.tvr}>
+                    Coventry University{" "}
+                  </Typography>
+                  <EditIcon style={experienceStyle.expeEditIcon} />
+                </div>
+                <div>
+                  <Typography style={experienceStyle.profileTitle}>
+                    BA Hons Automotive Design
+                  </Typography>
+
+                  <div
+                    style={{
+                      color: "#9B9B9D",
+                      display: "flex",
+                      fontFamily: "Silka",
+                      fontSize: "14px",
+                      fontStyle: "normal",
+                      fontWeight: "500",
+                      lineHeight: "19.364px",
+                    }}
+                  >
+                    <Typography>Jan 2022 - Jan 2023 | 6 months</Typography>
+                    <LocationOnIcon
+                      style={{ marginLeft: "12px", marginRight: "5px" }}
+                    />
+                    <Typography>Coventry, UK</Typography>
+                  </div>
+                  <div
+                    style={{
+                      width: "651px",
+                      marginTop: "16px",
+                      marginBottom: "28px",
+                    }}
+                  >
+                    <Typography
+                      style={{
+                        color: "#000",
+                        fontFamily: "Silka",
+                        fontSize: "16px",
+                        fontStyle: "normal",
+                        fontWeight: "200",
+                        lineHeight: "normal",
+                        marginBottom: "28px",
+                      }}
+                    >
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Integer id erat auctor, rutrum ex id, tincidunt tellus.
+                      Duis id nunc in neque maximus interdum. Nunc viverra
+                      vestibulum neque et mollis. Sed a odio condimentum,
+                      volutpat ex eu, volutpat tortor. Duis imperdiet urna eget
+                      lacus sollicitudin, non accumsan lorem posuere. In hac
+                      habitasse platea dictumst. Ut tempus et justo ac
+                      facilisis.
+                    </Typography>
+                    <div>
+                      <Button variant="outlined" style={webStyle.skillsButtons}>
+                        Sketching
+                      </Button>
+                      <Button variant="outlined" style={webStyle.skillsButtons}>
+                        Blender
+                      </Button>
+                      <Button variant="outlined" style={webStyle.skillsButtons}>
+                        Photoshop
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* ------------------------Education end-------------------------------------------- */}
+
+        {/* -----------------------------Socials start --------------------------------------------------- */}
+        <div style={{height: "174px", width: "1195px",margin: "auto",justifyContent: "center", alignItems: "center", border: "1px solid #D9D9D9",borderRadius: "4px",marginTop: "20px"}}>
+          <div style={experienceStyle.experienceInnerDiv}>
+            <Typography style={experienceStyle.expeTitle}>Socials</Typography>
+            <AddIcon style={{ color: "#FFF", height: "30px", width: "30px" }} />
+          </div>
+          <div style={{display: "flex", justifyContent: "space-between",padding: '20px', alignSelf: "center", marginTop: "20px"}}>
+            <div style={{ display: "flex", gap: '10px'}}>
+              <InstagramIcon />
+              <LinkedInIcon />
+              <InstagramIcon />
+              <LinkedInIcon />
+            </div>
+            <EditIcon />
+          </div>
+        </div>
+
+        {/* ------------------------------Socials end--------------------------------------------------- */}
+        <div style={{height: "30px"}}></div>
       </div>
     );
   }
@@ -393,6 +935,7 @@ const webStyle = {
     fontWeight: "500",
     fontFamily: "Silka",
     lineHeight: "24.13px",
+    letterSpacing: "-0.15px",
   },
   descDiv: {
     width: "1093px",
@@ -447,6 +990,94 @@ const webStyle = {
     fontFamily: "Silka",
     fontSize: "12px",
   },
-
+  userDescOppDiv: {
+    display: "flex",
+    justifyContent: "space-between",
+    width: "100%",
+    // paddingLeft: "20px",
+    // paddingRight: "20px",
+    marginTop: "32.99px",
+  },
+  userDescOppName: {
+    fontSize: "20px",
+    fontWeight: "500",
+    fontFamily: "Silka",
+    lineHeight: "24.13px",
+    letterSpacing: "-0.15px",
+  },
+  userDescSubName: {
+    fontSize: "16px",
+    fontWeight: "300",
+    fontFamily: "Silka",
+    lineHeight: "normal",
+    letterSpacing: "-0.15px",
+    alignSelf: "self-end",
+    marginLeft: "8px",
+  },
+  unavailability: {
+    fontSize: "16px",
+    fontWeight: "500",
+    fontFamily: "Silka",
+    lineHeight: "normal",
+    letterSpacing: "-0.15px",
+  },
   // Availability section end
+};
+
+const experienceStyle = {
+  experienceDiv: {
+    width: "1195px",
+    height: "741px",
+    margin: "auto",
+    marginTop: "50px",
+    justifyContent: "center",
+    alignItems: "center",
+    border: "1px solid #D9D9D9",
+    borderRadius: "4px",
+  },
+  experienceInnerDiv: {
+    display: "flex",
+    justifyContent: "space-between",
+    width: "1195px",
+    height: "61px",
+    background: "#000",
+    padding: "20px",
+    borderRadius: "4px, 4px, 0px, 0px",
+  },
+  expeTitle: {
+    fontSize: "16px",
+    fontWeight: "500",
+    fontFamily: "Silka",
+    lineHeight: "19.3px",
+    color: "#FFF",
+  },
+  tvr: {
+    color: "#000",
+    fontFamily: "Silka",
+    fontSize: "24px",
+    fontStyle: "normal",
+    fontWeight: "500",
+    lineHeight: "normal",
+    letterSpacing: "-0.15px",
+  },
+  expeEditIcon: {
+    width: "24px",
+    height: "24px",
+    flexShrink: "0",
+    color: "#9B9B9D",
+  },
+  expeNameDiv: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  profileTitle: {
+    color: "#000",
+    fontFamily: "Silka",
+    fontSize: "16px",
+    fontStyle: "normal",
+    fontWeight: "500",
+    lineHeight: "normal",
+    letterSpacing: "-0.15px",
+    marginTop: "12px",
+  },
 };
