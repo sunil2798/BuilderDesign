@@ -8,6 +8,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import AddIcon from "@material-ui/icons/Add";
 import InstagramIcon from '@material-ui/icons/Instagram';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import { Link } from "react-router-dom";
 
 export default class ProfileInfo extends Component {
   constructor() {
@@ -15,8 +16,18 @@ export default class ProfileInfo extends Component {
     this.state = {
       close: false,
       checked: true,
-
+      selectedOption: 'info',
+      editProfile : false,
     }
+
+  }
+
+  editProfileOpen = () => {
+    this.setState({
+      editProfile: true,
+
+    })
+    console.log("edit profile", this.state.editProfile);
   }
 
   handleChange = (event) => {
@@ -34,9 +45,16 @@ export default class ProfileInfo extends Component {
     });
     console.log("handle open", this.state.close);
   }
+  handleOptionChange = (event) => {
+    this.setState({
+      selectedOption: event.target.value,
+    });
+    console.log("option change ", event);
+  };
 
   render() {
-    
+    console.log("selected option ", this.state.selectedOption);
+
     // console.log("handle Close", this.state.close);
     return (
       <div style={{ height: "100%", width: "100%", overflow: "hidden" }}>
@@ -51,7 +69,7 @@ export default class ProfileInfo extends Component {
           <div>
             <div style={webStyle.userNameDiv}>
               <Typography style={webStyle.userName}>John Doe</Typography>
-              <EditIcon style={webStyle.editIcon} />
+              <EditIcon style={webStyle.editIcon} onClick={this.editProfileOpen} ><Link to={"/editprofile"}></Link></EditIcon>
             </div>
             <Typography style={webStyle.describtion}>
               Experienced automotive interior designer Living in London.
@@ -97,11 +115,22 @@ export default class ProfileInfo extends Component {
         </div>
         {/* ----------------------------------------------------------------------------------------------------- */}
         <div style={webStyle.worlInfoDiv}>
-          <div style={webStyle.infoDiv}>
-            <Typography style={webStyle.info} onChange={this.handleClose}>Info</Typography>
+          <div style={this.state.selectedOption === 'info' ? webStyle.infoDivActive : webStyle.workDivNotActive} id="info-div">
+            <Typography style={webStyle.info}
+             name='change'
+             value='info'
+             checked={this.state.selectedOption === 'info'}
+             onChange={this.handleOptionChange}
+             >Info</Typography>
           </div>
-          <div style={webStyle.workDiv}>
-            <Typography style={webStyle.info} onChange={this.handleOpen}>Work</Typography>
+          <div style={this.state.selectedOption === 'work' ? webStyle.infoDivActive : webStyle.workDivNotActive} id="work-div">
+            <Typography style={webStyle.info}
+             name='chnage'
+             value='work'
+             checked={this.state.selectedOption === 'work'}
+             onChange={this.handleOptionChange}
+             
+             >Work</Typography>
           </div>
         </div>
         {/* ---------------------------------------------------- */}
@@ -868,7 +897,7 @@ const webStyle = {
     justifyContent: "center",
     alignItems: "center",
   },
-  infoDiv: {
+  infoDivActive: {
     width: "50%",
     alignItems: "center",
     borderBottom: "2px solid #000",
@@ -881,7 +910,7 @@ const webStyle = {
     lineHeight: "40px",
     letterSpacing: "-0.15px",
   },
-  workDiv: {
+  workDivNotActive: {
     width: "50%",
     alignSelf: "center",
     borderBottom: "2px solid #DFDFDF",

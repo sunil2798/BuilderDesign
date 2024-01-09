@@ -19,6 +19,8 @@ import TechDetail from './component/arshad/TechDetail';
 import Formikk from './component/arshad/Formikk';
 import Port from './component/Gupta/Port';
 import ProfileInfo from './component/vishal/ProfileInfo';
+import IndianPatient from './component/himanshuGupta/IndianPatient';
+import EditProfile from './component/vishal/EditProfile';
 
 function App() {
   return (
@@ -43,6 +45,8 @@ function App() {
         <Route path='/formik' element={<Formikk />} />
         <Route path='/port' element={<Port />} />
         <Route path='/profileinfo' element={<ProfileInfo />} />
+        <Route path='/indianpatient' element={<IndianPatient />} />
+        <Route path='/editprofile' element={<EditProfile />} />
       </Routes>
     </BrowserRouter>
 
