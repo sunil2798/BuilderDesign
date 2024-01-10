@@ -1,22 +1,60 @@
 import React, { Component } from "react";
-import "./profileInfo.css";
+import "./editProfile.css";
 import profileImg from "../../img/profileImg.png";
-import { Grid, TextField, Typography } from "@material-ui/core";
+import {
+  Box,
+  Button,
+  Grid,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import EditIcon from "@material-ui/icons/Edit";
 import AddIcon from "@material-ui/icons/Add";
+// import OutlinedInput from '@mui/material/OutlinedInput';
 
 export default class EditProfile extends Component {
   constructor() {
     super();
     this.state = {
       editProfileOpen: false,
+      country: "",
+      town: "",
+      seniority: "",
+      names: [
+        "April Tucker",
+        "Ralph Hubbard",
+        "Omar Alexander",
+        "Carlos Abbott",
+        "Bradley Wilkerson",
+        "Kelly Snyder",
+      ],
     };
   }
 
   handleEditProfileOpen = () => {
     this.setState({
       editProfileOpen: true,
+    });
+  };
+
+  handleTownChange = (event) => {
+    this.setState({
+      town: event.target.value,
+    });
+  };
+
+  handleCountryChange = (event) => {
+    this.setState({
+      country: event.target.value,
+    });
+  };
+
+  handleSeniorityChange = (event) => {
+    this.setState({
+      seniority: event.target.value,
     });
   };
 
@@ -31,57 +69,308 @@ export default class EditProfile extends Component {
                   <Typography style={experienceStyle.expeTitle}>
                     Edit Profile
                   </Typography>
-                  <AddIcon
-                    style={experienceStyle.addIconEdit}
-                  />
+                  <AddIcon style={experienceStyle.addIconEdit} />
                 </div>
-                <Grid container>
-                  <Grid item xs={12} sm={12} md={12} lg={12}>
-                    <img src="/" alt="uploadimg" style={{height: "72px", width: "70px"}}/>
+                <Grid
+                  container
+                  style={{
+                    marginTop: "35px",
+                    marginBottom: "35px",
+                    padding: "20px",
+                    flexGrow: "1",
+                  }}
+                >
+                  <Grid
+                    item
+                    xs={12}
+                    sm={12}
+                    md={12}
+                    lg={12}
+                    style={{
+                      display: "grid",
+                      justifyContent: "center",
+                      marginBottom: "56px",
+                    }}
+                  >
+                    <Box
+                      style={{
+                        display: "grid",
+                        justifyContent: "center",
+                        justifyItems: "center",
+                        height: "108px",
+                        width: "179px",
+                      }}
+                    >
+                      <img
+                        src={profileImg}
+                        alt="uploadimg"
+                        style={{
+                          height: "72px",
+                          width: "70px",
+                          borderRadius: "50px",
+                          alignSelf: "center",
+                        }}
+                      />
+                      <Typography
+                        style={{
+                          fontStyle: "Silka",
+                          fontWeight: "500",
+                          fontSizeSize: "16px",
+                          lineHeight: "19.3px",
+                          textAlign: "Center",
+                          marginTop: "20px",
+                        }}
+                      >
+                        Upload Profile Picture
+                      </Typography>
+                    </Box>
                   </Grid>
 
-                  <Grid xs={6} sm={6} md={6} lg={6}>
-                    <Typography>First Name</Typography>
-                    <TextField variant="outlined" />
+                  <Grid
+                    gap={4}
+                    xs={6}
+                    sm={6}
+                    md={6}
+                    lg={6}
+                    style={{ padding: "10px 8px" }}
+                  >
+                    <Typography style={experienceStyle.iputHeadingText}>
+                      First Name
+                    </Typography>
+                    <TextField
+                      variant="outlined"
+                      style={experienceStyle.inputFieldTwo}
+                    />
                   </Grid>
-                  <Grid xs={6} sm={6} md={6} lg={6}>
-                  <Typography>Last Name</Typography>
-                    <TextField  variant="outlined"/>
-                  </Grid>
-
-                  <Grid xs={6} sm={6} md={6} lg={6}>
-                  <Typography>Profesion</Typography>
-                    <TextField variant="outlined" />
-                  </Grid>
-                  <Grid xs={6} sm={6} md={6} lg={6}>
-                  <Typography>Seniority</Typography>
-                    <TextField variant="outlined" />
-                  </Grid>
-
-                  <Grid xs={12} sm={12} md={12} lg={12}>
-                  <Typography>Headline</Typography>
-                    <TextField variant="outlined" />
-                  </Grid>
-
-                  <Grid xs={4} sm={4} md={4} lg={4}>
-                  <Typography>Country</Typography>
-                    <TextField variant="outlined"/>
-                  </Grid>
-                  <Grid xs={4} sm={4} md={4} lg={4}>
-                  <Typography>Country</Typography>
-                    <TextField variant="outlined"/>
-                  </Grid>
-                  <Grid xs={4} sm={4} md={4} lg={4}>
-                  <Typography>Town</Typography>
-                    <TextField variant="outlined"/>
+                  <Grid
+                    xs={6}
+                    sm={6}
+                    md={6}
+                    lg={6}
+                    style={{ padding: "10px 8px" }}
+                  >
+                    <Typography style={experienceStyle.iputHeadingText}>
+                      Last Name
+                    </Typography>
+                    <TextField
+                      variant="outlined"
+                      style={experienceStyle.inputFieldTwo}
+                    />
                   </Grid>
 
-                  <Grid xs={12} sm={12} md={12} lg={12}>
-                  <Typography>Preferred Type of work</Typography>
-                    <TextField variant="outlined"/>
+                  <Grid
+                    xs={6}
+                    sm={6}
+                    md={6}
+                    lg={6}
+                    style={{ padding: "10px 8px" }}
+                  >
+                    <Typography style={experienceStyle.iputHeadingText}>
+                      Profesion
+                    </Typography>
+                    <TextField
+                      variant="outlined"
+                      style={experienceStyle.inputFieldTwo}
+                    />
+                  </Grid>
+                  <Grid
+                    xs={6}
+                    sm={6}
+                    md={6}
+                    lg={6}
+                    style={{ padding: "10px 8px" }}
+                  >
+                    <Typography style={experienceStyle.iputHeadingText}>
+                      Seniority
+                    </Typography>
+                    <Select
+                      style={experienceStyle.inputFieldSeniority}
+                      variant="outlined"
+                      value={this.state.seniority}
+                      label="Seniority"
+                      onChange={this.handleSeniorityChange}
+                      // inputProps={{ "aria-label": "Without label" }}
+                    >
+                      {this.state.names.map((name, id) => (
+                        <MenuItem
+                          key={id}
+                          value={name}
+                          style={{ backgroundColor: "#FFF" }}
+                        >
+                          {name}
+                        </MenuItem>
+                      ))}
+                    </Select>
                   </Grid>
 
+                  <Grid
+                    xs={12}
+                    sm={12}
+                    md={12}
+                    lg={12}
+                    style={{ padding: "10px 8px" }}
+                  >
+                    <Box
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <Typography style={experienceStyle.iputHeadingText}>
+                        Headline
+                      </Typography>
+                      <Typography>0/60</Typography>
+                    </Box>
+                    <TextField
+                      variant="outlined"
+                      style={experienceStyle.inputFieldOne}
+                    />
+                  </Grid>
 
+                  <Grid
+                    xs={4}
+                    sm={4}
+                    md={4}
+                    lg={4}
+                    style={{ padding: "10px 8px" }}
+                  >
+                    <Typography style={experienceStyle.iputHeadingText}>
+                      Country
+                    </Typography>
+                    <Select
+                      style={experienceStyle.dropDownInput}
+                      variant="outlined"
+                      value={this.state.country}
+                      label="Country"
+                      onChange={this.handleCountryChange}
+                      inputProps={{ "aria-label": "Without label" }}
+                      // input={<OutlinedInput />}
+                    >
+                      {this.state.names.map((name, id) => (
+                        <MenuItem
+                          key={id}
+                          value={name}
+                          style={{ backgroundColor: "#FFF" }}
+                        >
+                          {name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </Grid>
+                  <Grid
+                    xs={4}
+                    sm={4}
+                    md={4}
+                    lg={4}
+                    style={{ padding: "10px 8px" }}
+                  >
+                    <Typography style={experienceStyle.iputHeadingText}>
+                      Country
+                    </Typography>
+                    <Select
+                      style={experienceStyle.dropDownInput}
+                      variant="outlined"
+                      value={this.state.country}
+                      label="Country"
+                      onChange={this.handleCountryChange}
+                      inputProps={{ "aria-label": "Without label" }}
+                      // input={<OutlinedInput />}
+                    >
+                      {this.state.names.map((name, id) => (
+                        <MenuItem
+                          key={id}
+                          value={name}
+                          style={{ backgroundColor: "#FFF" }}
+                        >
+                          {name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </Grid>
+                  <Grid
+                    xs={4}
+                    sm={4}
+                    md={4}
+                    lg={4}
+                    style={{ padding: "10px 8px" }}
+                  >
+                    <Typography style={experienceStyle.iputHeadingText}>
+                      Town
+                    </Typography>
+                    <Select
+                      style={experienceStyle.dropDownInput}
+                      variant="outlined"
+                      value={this.state.town}
+                      label="Town"
+                      onChange={this.handleTownChange}
+                      inputProps={{ "aria-label": "Without label" }}
+                      // input={<OutlinedInput />}
+                    >
+                      {this.state.names.map((name, id) => (
+                        <MenuItem
+                          key={id}
+                          value={name}
+                          style={{ backgroundColor: "#FFF",position: "relative",left: "0px", top:"1px",bottom: "1px" }}
+                        >
+                          {name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </Grid>
+
+                  <Grid
+                    xs={12}
+                    sm={12}
+                    md={12}
+                    lg={12}
+                    style={{ padding: "10px 8px" }}
+                  >
+                    <Typography style={experienceStyle.iputHeadingText}>
+                      Preferred Type of work
+                    </Typography>
+                    <TextField
+                      variant="outlined"
+                      style={experienceStyle.inputFieldOne}
+                    />
+                  </Grid>
+
+                  <Grid
+                    xs={12}
+                    sm={12}
+                    md={12}
+                    lg={12}
+                    style={{
+                      marginTop: "35px",
+                      display: "flex",
+                      justifyContent: "end",
+                    }}
+                  >
+                    <Button
+                      variant="outlined"
+                      style={{
+                        height: "48px",
+                        width: "104px",
+                        color: "#000",
+                        background: "#FFF",
+                        borderRadius: "2px",
+                        border: "1px solid #000",
+                        marginRight: "16px",
+                      }}
+                    >
+                      Delete
+                    </Button>
+
+                    <Button
+                      style={{
+                        height: "48px",
+                        width: "104px",
+                        color: "#FFF",
+                        background: "#DFDFDF",
+                      }}
+                    >
+                      Save
+                    </Button>
+                  </Grid>
                 </Grid>
               </div>
             </>
@@ -319,9 +608,9 @@ const webStyle = {
 const experienceStyle = {
   experienceDiv: {
     width: "1195px",
-    height: "825px",
+    // height: "825px",
     margin: "auto",
-    marginTop: "50px",
+    marginTop: "35px",
     justifyContent: "center",
     alignItems: "center",
     border: "1px solid #DFDFDF",
@@ -353,6 +642,42 @@ const experienceStyle = {
     letterSpacing: "-0.15px",
   },
   addIconEdit: {
-
+    color: "#FFF",
+    height: "24px",
+    width: "24px",
+    flexShrink: "0",
+  },
+  iputHeadingText: {
+    fontStyle: "Silka",
+    fontWeight: "500",
+    fontSizeSize: "16px",
+    lineHeight: "19.3px",
+  },
+  inputFieldTwo: {
+    // height: "48px",
+    width: "547px",
+    gap: "8px",
+    marginTop: "4px",
+  },
+  inputFieldOne: {
+    height: "48px",
+    width: "100%",
+    gap: "8px",
+    marginTop: "4px",
+  },
+  inputFieldSeniority: {
+    padding: "15px 8px",
+    alignItems: "flex-end",
+    height: "48px",
+    width: "547px",
+    gap: "8px",
+    marginTop: "4px",
+  },
+  dropDownInput: {
+    height: "48px",
+    width: "358px",
+    gap: "8px",
+    padding: "15px 8px",
+    alignItems: "flex-end",
   },
 };

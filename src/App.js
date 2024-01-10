@@ -21,6 +21,7 @@ import Port from './component/Gupta/Port';
 import ProfileInfo from './component/vishal/ProfileInfo';
 import IndianPatient from './component/himanshuGupta/IndianPatient';
 import EditProfile from './component/vishal/EditProfile';
+import Header from './component/vishal/Header';
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
         <Route path='/profileinfo' element={<ProfileInfo />} />
         <Route path='/indianpatient' element={<IndianPatient />} />
         <Route path='/editprofile' element={<EditProfile />} />
+        <Route path='/header' element={<Header />} />
       </Routes>
     </BrowserRouter>
 
