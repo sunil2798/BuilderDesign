@@ -1,0 +1,11 @@
+.expendArrow {
+    transform: rotate(180deg);
+    transition-delay: 25s !important;
+    transition-duration: 5s !important;
+}
+
+.expendArrowReturn {
+    transform: rotate(0deg);
+    transition-delay: 25s !important;
+    transition-duration: 5s !important;
+}
