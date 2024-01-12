@@ -55,7 +55,7 @@ export default class Header extends Component {
               display: "flex",
               justifyContent: "space-evenly",
               textAlign: "center",
-              width: "50%",
+              width: "40%",
             }}
           >
             <Box
@@ -99,19 +99,17 @@ export default class Header extends Component {
                 <ExpandMoreIcon
                   style={webStyle.expendIconDescover}
                   className={
-                    this.state.isOpenArrow
-                      ? "expendArrow"
-                      : "expendArrowReturn"
+                    this.state.isOpenArrow ? "expendArrow" : "expendArrowReturn"
                   }
                 />
                 {this.state.isDropdownOpen && (
                   <Box
                     style={{
                       position: "absolute",
-                      top: "30px",
+                      top: "38px",
                       left: "0px",
                       zIndex: "999999",
-                      boxShadow: "0px 5px 10px 2px",
+                      // boxShadow: "0px 5px 10px 2px",
                       height: "194x",
                       width: "192px",
                       background: "#FFF",
@@ -124,15 +122,56 @@ export default class Header extends Component {
                       borderRadius: "4px",
                     }}
                   >
-                    <Link to="/" style={webStyle.discoverHyperLink}>
-                      Gallery
-                    </Link>
-                    <Link to="/" style={webStyle.discoverHyperLink}>
-                      Events
-                    </Link>
-                    <Link to="/" style={webStyle.discoverHyperLink}>
-                      Media
-                    </Link>
+                    <div>
+                      <Link to="/" style={webStyle.discoverHyperLink}>
+                        Gallery
+                      </Link>
+                    </div>
+                    <Box style={{ width: "190px" }}>
+                      <Typography
+                        style={{
+                          borderBottom: "0.6px solid #9B9B9D",
+                          width: "160px",
+                          opacity: "16%",
+                          margin: "auto",
+                        }}
+                      />
+                    </Box>
+                    <div>
+                      <Link to="/" style={webStyle.discoverHyperLink}>
+                        Compaines
+                      </Link>
+                    </div>
+                    <Box style={{ width: "190px" }}>
+                      <Typography
+                        style={{
+                          borderBottom: "0.6px solid #9B9B9D",
+                          width: "160px",
+                          opacity: "16%",
+                          margin: "auto",
+                        }}
+                      />
+                    </Box>
+                    <div>
+                      <Link to="/" style={webStyle.discoverHyperLink}>
+                        Events
+                      </Link>
+                    </div>
+                    <Box style={{ width: "190px" }}>
+                      <Typography
+                        style={{
+                          borderBottom: "0.6px solid #9B9B9D",
+                          width: "160px",
+                          opacity: "16%",
+                          margin: "auto",
+                        }}
+                      />
+                    </Box>
+                    <div>
+                      <Link to="/" style={webStyle.discoverHyperLink}>
+                        Media
+                      </Link>
+                    </div>
                   </Box>
                 )}
               </Box>
@@ -166,7 +205,17 @@ export default class Header extends Component {
                 onClick={this.handleHeaderProfileClose}
                 style={webStyle.profileHyperLinkDiv}
               >
-                
+                <Box style={{ width: "190px" }}>
+                  <Typography
+                    style={{
+                      borderBottom: "0.6px solid #9B9B9D",
+                      width: "160px",
+                      opacity: "16%",
+                      margin: "auto",
+                    }}
+                  />
+                </Box>
+
                 <div>
                   <Link to="/" style={webStyle.discoverHyperLink}>
                     Settings
@@ -177,20 +226,21 @@ export default class Header extends Component {
                     Favourites
                   </Link>
                 </div>
-                <div>
-                  <Link to="/" style={webStyle.discoverHyperLink}>
-                    Log out
-                  </Link>
-                </div>
-                <Box style={{ margin: "auto",width: "100%" }}>
+                <Box style={{ width: "190px" }}>
                   <Typography
                     style={{
                       borderBottom: "0.6px solid #9B9B9D",
                       width: "160px",
                       opacity: "16%",
+                      margin: "auto",
                     }}
                   />
                 </Box>
+                <div>
+                  <Link to="/" style={webStyle.discoverHyperLink}>
+                    Log out
+                  </Link>
+                </div>
               </Box>
             )}
           </Box>
