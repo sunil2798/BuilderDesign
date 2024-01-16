@@ -12,7 +12,7 @@ export default class Header extends Component {
     super();
     this.state = {
       profileModal: false,
-      discoveryDropdown: false,
+      discoverDropdown: false,
       isDropdownOpen: false,
       isOpenArrow: false,
     };
@@ -43,38 +43,18 @@ export default class Header extends Component {
     return (
       <>
         <Box
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            width: "100%",
-            height: "55px",
-          }}
+          style={webStyle.headOuterContainer}
         >
           <Box
-            style={{
-              display: "flex",
-              justifyContent: "space-evenly",
-              textAlign: "center",
-              width: "40%",
-            }}
+            style={webStyle.leftAlignOption}
           >
             <Box
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "space-around",
-                alignItems: "center",
-              }}
+              style={webStyle.logoContainer}
             >
               <img
                 src={logoV}
                 alt="logo"
-                style={{
-                  width: "19.412px",
-                  height: "25.674px",
-                  flexGrow: "0",
-                  alignSelf: "center",
-                }}
+                style={webStyle.logoImage}
               />
 
               <Link to="/" style={webStyle.hyperLink}>
@@ -88,12 +68,7 @@ export default class Header extends Component {
               </Link>
               <Box
                 onClick={this.handleisDropdownOpen}
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  position: "relative",
-                }}
+                style={webStyle.discoverAnimation}
               >
                 <Typography>Discover</Typography>
                 <ExpandMoreIcon
@@ -104,37 +79,16 @@ export default class Header extends Component {
                 />
                 {this.state.isDropdownOpen && (
                   <Box
-                    style={{
-                      position: "absolute",
-                      top: "38px",
-                      left: "0px",
-                      zIndex: "999999",
-                      // boxShadow: "0px 5px 10px 2px",
-                      height: "194x",
-                      width: "192px",
-                      background: "#FFF",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "start",
-                      gap: "7px",
-                      padding: "4px 4px 4px 5px",
-                      border: "1px solid #DFDFDF",
-                      borderRadius: "4px",
-                    }}
+                    style={webStyle.discoverDropDown}
                   >
                     <div>
                       <Link to="/" style={webStyle.discoverHyperLink}>
                         Gallery
                       </Link>
                     </div>
-                    <Box style={{ width: "190px" }}>
+                    <Box style={webStyle.discoverDropDownWidth}>
                       <Typography
-                        style={{
-                          borderBottom: "0.6px solid #9B9B9D",
-                          width: "160px",
-                          opacity: "16%",
-                          margin: "auto",
-                        }}
+                        style={webStyle.discoverOptionBorder}
                       />
                     </Box>
                     <div>
@@ -178,27 +132,15 @@ export default class Header extends Component {
             </Box>
           </Box>
 
-          <Box
-            style={{
-              width: "10%",
-              display: "flex",
-              justifyContent: "space-evenly",
-              position: "relative",
-            }}
-          >
+          <Box style={webStyle.rightAlignOption}>
             <ChatBubbleOutlineIcon
-              style={{ height: "24px", width: "24px", alignSelf: "center" }}
+              style={webStyle.chatOption}
             />
             <img
               onClick={this.handleHeaderProfileOpen}
               src={profileImg}
               alt="profile"
-              style={{
-                height: "32px",
-                width: "32px",
-                flexShrink: "0",
-                alignSelf: "center",
-              }}
+              style={webStyle.headerImage}
             />
             {this.state.profileModal && (
               <Box
@@ -312,4 +254,77 @@ const webStyle = {
     height: "24px",
     width: "24px",
   },
+  headerImage: {
+    height: "32px",
+    width: "32px",
+    flexShrink: 0,
+    alignSelf: "center",
+  },
+  chatOption: { 
+    height: "24px", 
+    width: "24px", 
+    alignSelf: "center" 
+  },
+  rightAlignOption: {
+    width: "10%",
+    display: "flex",
+    justifyContent: "space-evenly",
+    position: "relative",
+  },
+  discoverOptionBorder: {
+    borderBottom: "0.6px solid #9B9B9D",
+    width: "160px",
+    opacity: "16%",
+    margin: "auto",
+  },
+  discoverDropDownWidth: { 
+    width: "190px" 
+  },
+  discoverDropDown: {
+    position: "absolute",
+    top: "38px",
+    left: "0px",
+    zIndex: "999999",
+    // boxShadow: "0px 5px 10px 2px",
+    height: "194x",
+    width: "192px",
+    background: "#FFF",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "start",
+    gap: "7px",
+    padding: "4px 4px 4px 5px",
+    border: "1px solid #DFDFDF",
+    borderRadius: "4px",
+  },
+  discoverAnimation: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "relative",
+  },
+  logoImage: {
+    width: "19.412px",
+    height: "25.674px",
+    flexGrow: 0,
+    alignSelf: "center",
+  },
+  logoContainer: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: "center",
+  },
+  leftAlignOption: {
+    display: "flex",
+    justifyContent: "space-evenly",
+    textAlign: "center",
+    width: "40%",
+  },
+  headOuterContainer: {
+    display: "flex",
+    justifyContent: "space-between",
+    width: "100%",
+    height: "55px",
+  }
 };
