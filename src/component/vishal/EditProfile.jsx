@@ -61,7 +61,7 @@ export default class EditProfile extends Component {
   render() {
     return (
       <>
-        <div style={{ height: "100%", width: "100%", overflow: "hidden" }}>
+        <div style={webStyle.outerMostContainer}>
           {this.state.editProfileOpen ? (
             <>
               <div style={experienceStyle.experienceDiv}>
@@ -73,12 +73,7 @@ export default class EditProfile extends Component {
                 </div>
                 <Grid
                   container
-                  style={{
-                    marginTop: "35px",
-                    marginBottom: "35px",
-                    padding: "20px",
-                    flexGrow: "1",
-                  }}
+                  style={webStyle.editFormParentContainer}
                 >
                   <Grid
                     item
@@ -86,40 +81,18 @@ export default class EditProfile extends Component {
                     sm={12}
                     md={12}
                     lg={12}
-                    style={{
-                      display: "grid",
-                      justifyContent: "center",
-                      marginBottom: "56px",
-                    }}
+                    style={webStyle.outerGrid}
                   >
                     <Box
-                      style={{
-                        display: "grid",
-                        justifyContent: "center",
-                        justifyItems: "center",
-                        height: "108px",
-                        width: "179px",
-                      }}
+                      style={webStyle.mainEditForm}
                     >
                       <img
                         src={profileImg}
                         alt="uploadimg"
-                        style={{
-                          height: "72px",
-                          width: "70px",
-                          borderRadius: "50px",
-                          alignSelf: "center",
-                        }}
+                        style={webStyle.profileImage}
                       />
                       <Typography
-                        style={{
-                          fontStyle: "Silka",
-                          fontWeight: "500",
-                          fontSizeSize: "16px",
-                          lineHeight: "19.3px",
-                          textAlign: "Center",
-                          marginTop: "20px",
-                        }}
+                        style={webStyle.profileImageCaption}
                       >
                         Upload Profile Picture
                       </Typography>
@@ -132,7 +105,7 @@ export default class EditProfile extends Component {
                     sm={6}
                     md={6}
                     lg={6}
-                    style={{ padding: "10px 8px" }}
+                    style={webStyle.inputBoxPadding}
                   >
                     <Typography style={experienceStyle.iputHeadingText}>
                       First Name
@@ -147,7 +120,7 @@ export default class EditProfile extends Component {
                     sm={6}
                     md={6}
                     lg={6}
-                    style={{ padding: "10px 8px" }}
+                    style={webStyle.inputBoxPadding}
                   >
                     <Typography style={experienceStyle.iputHeadingText}>
                       Last Name
@@ -163,7 +136,7 @@ export default class EditProfile extends Component {
                     sm={6}
                     md={6}
                     lg={6}
-                    style={{ padding: "10px 8px" }}
+                    style={webStyle.inputBoxPadding}
                   >
                     <Typography style={experienceStyle.iputHeadingText}>
                       Profesion
@@ -178,7 +151,7 @@ export default class EditProfile extends Component {
                     sm={6}
                     md={6}
                     lg={6}
-                    style={{ padding: "10px 8px" }}
+                    style={webStyle.inputBoxPadding}
                   >
                     <Typography style={experienceStyle.iputHeadingText}>
                       Seniority
@@ -195,7 +168,7 @@ export default class EditProfile extends Component {
                         <MenuItem
                           key={id}
                           value={name}
-                          style={{ backgroundColor: "#FFF" }}
+                          style={webStyle.inputBackground}
                         >
                           {name}
                         </MenuItem>
@@ -208,7 +181,7 @@ export default class EditProfile extends Component {
                     sm={12}
                     md={12}
                     lg={12}
-                    style={{ padding: "10px 8px" }}
+                    style={webStyle.inputBoxPadding}
                   >
                     <Box
                       style={{
@@ -232,7 +205,7 @@ export default class EditProfile extends Component {
                     sm={4}
                     md={4}
                     lg={4}
-                    style={{ padding: "10px 8px" }}
+                    style={webStyle.inputBoxPadding}
                   >
                     <Typography style={experienceStyle.iputHeadingText}>
                       Country
@@ -262,7 +235,7 @@ export default class EditProfile extends Component {
                     sm={4}
                     md={4}
                     lg={4}
-                    style={{ padding: "10px 8px" }}
+                    style={webStyle.inputBoxPadding}
                   >
                     <Typography style={experienceStyle.iputHeadingText}>
                       Country
@@ -280,7 +253,7 @@ export default class EditProfile extends Component {
                         <MenuItem
                           key={id}
                           value={name}
-                          style={{ backgroundColor: "#FFF" }}
+                          style={webStyle.inputBackground}
                         >
                           {name}
                         </MenuItem>
@@ -292,7 +265,7 @@ export default class EditProfile extends Component {
                     sm={4}
                     md={4}
                     lg={4}
-                    style={{ padding: "10px 8px" }}
+                    style={webStyle.inputBoxPadding}
                   >
                     <Typography style={experienceStyle.iputHeadingText}>
                       Town
@@ -310,7 +283,7 @@ export default class EditProfile extends Component {
                         <MenuItem
                           key={id}
                           value={name}
-                          style={{ backgroundColor: "#FFF",position: "relative",left: "0px", top:"1px",bottom: "1px" }}
+                          style={webStyle.inputName}
                         >
                           {name}
                         </MenuItem>
@@ -323,7 +296,7 @@ export default class EditProfile extends Component {
                     sm={12}
                     md={12}
                     lg={12}
-                    style={{ padding: "10px 8px" }}
+                    style={webStyle.inputBoxPadding}
                   >
                     <Typography style={experienceStyle.iputHeadingText}>
                       Preferred Type of work
@@ -339,34 +312,17 @@ export default class EditProfile extends Component {
                     sm={12}
                     md={12}
                     lg={12}
-                    style={{
-                      marginTop: "35px",
-                      display: "flex",
-                      justifyContent: "end",
-                    }}
+                    style={webStyle.buttons}
                   >
                     <Button
                       variant="outlined"
-                      style={{
-                        height: "48px",
-                        width: "104px",
-                        color: "#000",
-                        background: "#FFF",
-                        borderRadius: "2px",
-                        border: "1px solid #000",
-                        marginRight: "16px",
-                      }}
+                      style={webStyle.deleteButton}
                     >
                       Delete
                     </Button>
 
                     <Button
-                      style={{
-                        height: "48px",
-                        width: "104px",
-                        color: "#FFF",
-                        background: "#DFDFDF",
-                      }}
+                      style={webStyle.saveButton}
                     >
                       Save
                     </Button>
@@ -606,6 +562,76 @@ const webStyle = {
 };
 
 const experienceStyle = {
+  outerMostContainer: { 
+    height: "100%", 
+    width: "100%", 
+    overflow: "hidden" 
+  },
+  editFormParentContainer: {
+    marginTop: "35px",
+    marginBottom: "35px",
+    padding: "20px",
+    flexGrow: "1",
+  },
+  outerGrid: {
+    display: "grid",
+    justifyContent: "center",
+    marginBottom: "56px",
+  },
+  mainEditForm: {
+    display: "grid",
+    justifyContent: "center",
+    justifyItems: "center",
+    height: "108px",
+    width: "179px",
+  },
+  profileImage: {
+    height: "72px",
+    width: "70px",
+    borderRadius: "50px",
+    alignSelf: "center",
+  },
+  profileImageCaption: {
+    fontStyle: "Silka",
+    fontWeight: 500,
+    fontSizeSize: "16px",
+    lineHeight: "19.3px",
+    textAlign: "Center",
+    marginTop: "20px",
+  },
+  inputBoxPadding: { 
+    padding: "10px 8px" 
+  },
+  inputName: { 
+    backgroundColor: "#FFF",
+    position: "relative",
+    left: "0px", 
+    top:"1px",
+    bottom: "1px" 
+  },
+  deleteButton: {
+    height: "48px",
+    width: "104px",
+    color: "#000",
+    background: "#FFF",
+    borderRadius: "2px",
+    border: "1px solid #000",
+    marginRight: "16px",
+  },
+  buttons: {
+    marginTop: "35px",
+    display: "flex",
+    justifyContent: "end",
+  },
+  saveButton: {
+    height: "48px",
+    width: "104px",
+    color: "#FFF",
+    background: "#DFDFDF",
+  },
+  inputBackground: { 
+    backgroundColor: "#FFF" 
+  },
   experienceDiv: {
     width: "1195px",
     // height: "825px",

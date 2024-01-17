@@ -2,3 +2,8 @@
   height: 48px !important;
   /* width: 547px !important; */
 }
+
+.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiSelect-outlined.MuiInputBase-input.MuiOutlinedInput-input{
+  width: 100% !important;
+  align-self: center !important;
+}
