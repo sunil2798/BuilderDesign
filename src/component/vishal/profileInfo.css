@@ -28,7 +28,7 @@
     left: 0;
     right: 15px;
     bottom: 0;
-    background-color: #00FFA7;
+    background-color: #00FFA7 !important;
     -webkit-transition: .4s;
     transition: .4s;
     width: 48px;
@@ -47,7 +47,7 @@
   }
   
   input:checked+.slider {
-    background-color: #00FFA7;
+    background-color: #00FFA7 !important;
   }
   
   input:focus+.slider {
@@ -59,14 +59,35 @@
     -ms-transform: translateX(20px);
     transform: translateX(20px);
   }
-  
-  /* Rounded sliders */
+    /* Rounded sliders */
   .slider.round {
     border-radius: 50px;
   }
-  
   .slider.round:before {
     border-radius: 50%;
   }
-  
-  
+
+
+@media only screen and (max-width: 800px) {
+  .img-div {
+    max-width: fit-content;
+    flex-direction: column; 
+  }
+  .profile-img {
+    align-self: center;
+  }
+  .userName-div {
+    margin: auto;
+    align-self: center;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
+  .workInfo-div{
+    margin-top: 310px !important;
+  }
+  .user-descdiv {
+    /* flex-grow: 1;
+    display: grid; */
+  }
+}  

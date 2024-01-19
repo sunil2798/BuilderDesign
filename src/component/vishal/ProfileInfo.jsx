@@ -6,8 +6,8 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 import EditIcon from "@material-ui/icons/Edit";
 import CloseIcon from "@material-ui/icons/Close";
 import AddIcon from "@material-ui/icons/Add";
-import InstagramIcon from '@material-ui/icons/Instagram';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import InstagramIcon from "@material-ui/icons/Instagram";
+import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import { Link } from "react-router-dom";
 
 export default class ProfileInfo extends Component {
@@ -16,35 +16,32 @@ export default class ProfileInfo extends Component {
     this.state = {
       close: false,
       checked: true,
-      selectedOption: 'info',
-      editProfile : false,
-    }
-
+      selectedOption: "info",
+      editProfile: false,
+    };
   }
 
   editProfileOpen = () => {
     this.setState({
       editProfile: true,
-
-    })
+    });
     console.log("edit profile", this.state.editProfile);
-  }
-
+  };
   handleChange = (event) => {
     this.setState((prevState) => ({
       checked: !prevState.checked,
     }));
   };
   handleClose = () => {
-    this.setState({close: false});
+    this.setState({ close: false });
     console.log("handle Close", this.state.close);
-  }
+  };
   handleOpen = () => {
     this.setState({
-      close: true
+      close: true,
     });
     console.log("handle open", this.state.close);
-  }
+  };
   handleOptionChange = (event) => {
     this.setState({
       selectedOption: event.target.value,
@@ -58,22 +55,27 @@ export default class ProfileInfo extends Component {
     // console.log("handle Close", this.state.close);
     return (
       <div style={{ height: "100%", width: "100%", overflow: "hidden" }}>
-        <div style={webStyle.profileinfoDiv}>
-          <div style={webStyle.profileimgDiv}>
+        <div style={webStyle.profileinfoDiv} className="img-div">
+          <div style={webStyle.profileimgDiv} className="profile-img">
             <img
               src={profileImg}
               alt="profileImage"
               style={webStyle.profileImg}
             />
           </div>
-          <div>
-            <div style={webStyle.userNameDiv}>
-              <Typography style={webStyle.userName}>John Doe</Typography>
-              <EditIcon style={webStyle.editIcon} onClick={this.editProfileOpen} ><Link to={"/editprofile"}></Link></EditIcon>
+          <div style={{padding:"20px"}}>
+            <div style={webStyle.userNameDiv} className="userName-div">
+              <div>
+                <Typography style={webStyle.userName}>John Doe</Typography>
+                <Typography style={webStyle.describtion}>
+                  Experienced automotive interior designer Living in London.
+                </Typography>
+              </div>
+              <EditIcon
+                style={webStyle.editIcon}
+                onClick={this.editProfileOpen}
+              />
             </div>
-            <Typography style={webStyle.describtion}>
-              Experienced automotive interior designer Living in London.
-            </Typography>
 
             <div style={webStyle.borderDiv}>
               <Typography style={webStyle.borderBottom} />
@@ -113,28 +115,49 @@ export default class ProfileInfo extends Component {
             </div>
           </div>
         </div>
-        {/* ----------------------------------------------------------------------------------------------------- */}
-        <div style={webStyle.worlInfoDiv}>
-          <div style={this.state.selectedOption === 'info' ? webStyle.infoDivActive : webStyle.workDivNotActive} id="info-div">
-            <Typography style={webStyle.info}
-             name='change'
-             value='info'
-             checked={this.state.selectedOption === 'info'}
-             onChange={this.handleOptionChange}
-             >Info</Typography>
+        {/* --------------------------------------WorkInfo start--------------------------------------------------------------- */}
+        <div style={webStyle.worlInfoDiv} className="workInfo-div">
+          <div
+            style={
+              this.state.selectedOption === "info"
+                ? webStyle.infoDivActive
+                : webStyle.workDivNotActive
+            }
+            id="info-div"
+          >
+            <Typography
+              style={webStyle.info}
+              name="change"
+              value="info"
+              checked={this.state.selectedOption === "info"}
+              onChange={this.handleOptionChange}
+            >
+              Info
+            </Typography>
           </div>
-          <div style={this.state.selectedOption === 'work' ? webStyle.infoDivActive : webStyle.workDivNotActive} id="work-div">
-            <Typography style={webStyle.info}
-             name='chnage'
-             value='work'
-             checked={this.state.selectedOption === 'work'}
-             onChange={this.handleOptionChange}
-             
-             >Work</Typography>
+          <div
+            style={
+              this.state.selectedOption === "work"
+                ? webStyle.infoDivActive
+                : webStyle.workDivNotActive
+            }
+            id="work-div"
+          >
+            <Typography
+              style={webStyle.info}
+              name="chnage"
+              value="work"
+              checked={this.state.selectedOption === "work"}
+              onChange={this.handleOptionChange}
+            >
+              Work
+            </Typography>
           </div>
         </div>
-        {/* ---------------------------------------------------- */}
-        <div style={webStyle.userDescDiv}>
+        {/* -----------------------WorkInfo End-------------------------- */}
+
+        {/* ----------------------User description start------------------------------ */}
+        <div style={webStyle.userDescDiv} className="user-descdiv">
           <div style={webStyle.userDescInnerDiv}>
             <Typography style={webStyle.userDescName}>John Doe</Typography>
             <EditIcon style={webStyle.editIcon} />
@@ -161,12 +184,13 @@ export default class ProfileInfo extends Component {
             </Typography>
           </div>
 
-          <div style={{ marginTop: "80px" }}>
+          <div style={{ marginTop: "80px", backgroundColor: "red" }}>
             <Typography
-              style={{ borderBottom: "1px solid #D9D9D9", width: "1107px" }}
+              style={{ borderBottom: "10px solid #D9D9D9", width: "100%" }}
             />
           </div>
-          <div>
+          
+          <div style={{display: "flex", flexDirection: "column", width: "90%",alignSelf: "start"}}>
             <Typography style={webStyle.skills}>Skills</Typography>
             <div style={webStyle.buttonDiv}>
               <Button variant="outlined" style={webStyle.skillsButtons}>
@@ -190,6 +214,8 @@ export default class ProfileInfo extends Component {
             </div>
           </div>
         </div>
+        {/* ----------------------User description end------------------------------ */}
+
         {/* -------------------Availability start--------------------------------- */}
         <div style={webStyle.availabilityDiv}>
           <div style={webStyle.availabilityInnerDiv}>
@@ -201,17 +227,13 @@ export default class ProfileInfo extends Component {
               </a>
             </Typography>
           </div>
-          <div style={{ width: "1112px", margin: "auto" }}>
+          <div style={{ maxwidth: "1112px", margin: "auto",padding: "20px" }}>
             <div style={webStyle.userDescOppDiv}>
               <div style={{ display: "flex" }}>
                 <Typography style={webStyle.userDescOppName}>
-                  Open for opportunities.
-                </Typography>
-                <Typography style={webStyle.userDescSubName}>
-                  Are you interested in work either now or in the future?
+                  Open for opportunities. <span style={webStyle.userDescSubName}>Are you interested in work either now or in the future?</span>
                 </Typography>
               </div>
-              {/* <EditIcon style={webStyle.editIcon} /> */}
               <Box>
                 <label class="switch">
                   <input type="checkbox"
@@ -225,7 +247,7 @@ export default class ProfileInfo extends Component {
 
             <div style={{ marginTop: "28px", marginBottom: "28px" }}>
               <Typography
-                style={{ borderBottom: "1px solid #D9D9D9", width: "1107px" }}
+                style={{ borderBottom: "1px solid #D9D9D9", width: "100%" }}
               />
             </div>
             <div>
@@ -239,22 +261,19 @@ export default class ProfileInfo extends Component {
                 }}
               >
                 <Typography
-                  style={{ borderBottom: "1px solid #D9D9D9", width: "1107px" }}
+                  style={{ borderBottom: "1px solid #D9D9D9", width: "100%" }}
                 />
               </div>
               <div style={{ display: "inline-flex", width: "100%" }}>
-                <div style={{ width: "70%" }}>
+                <div style={{ width: "70%",boxSizing: "content-box" }}>
                   <TextField
                     variant="outlined"
                     placeholder="Unavailabile Form"
                     style={{
-                      height: "33px",
-                      width: "360px",
                       padding: "4px 8px 5px 8px",
                       alignItems: "center",
                       flexShrink: "0",
                       borderRadius: "2px",
-                      boxSizing: "none",
                     }}
                   />
                   <TextField
@@ -289,7 +308,7 @@ export default class ProfileInfo extends Component {
               </div>
               <div style={{ marginTop: "12px" }}>
                 <Typography
-                  style={{ borderBottom: "1px solid #D9D9D9", width: "1107px" }}
+                  style={{ borderBottom: "1px solid #D9D9D9", width: "100%" }}
                 />
               </div>
               <div style={{ marginTop: "12px", marginBottom: "12px" }}>
@@ -297,7 +316,7 @@ export default class ProfileInfo extends Component {
               </div>
               <div>
                 <Typography
-                  style={{ borderBottom: "1px solid #D9D9D9", width: "1107px" }}
+                  style={{ borderBottom: "1px solid #D9D9D9", width: "100%" }}
                 />
               </div>
             </div>
@@ -517,7 +536,7 @@ export default class ProfileInfo extends Component {
         {/* --------------------Experience end-------------------------------- */}
 
         {/* -----------------------Education start--------------------------------------------- */}
-        <div style={experienceStyle.experienceDiv}>
+        {/* <div style={experienceStyle.experienceDiv}>
           <div style={experienceStyle.experienceInnerDiv}>
             <Typography style={experienceStyle.expeTitle}>Education</Typography>
             <AddIcon style={{ color: "#FFF", height: "30px", width: "30px" }} />
@@ -703,11 +722,11 @@ export default class ProfileInfo extends Component {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* ------------------------Education end-------------------------------------------- */}
 
         {/* -----------------------------Socials start --------------------------------------------------- */}
-        <div style={{height: "174px", width: "1195px",margin: "auto",justifyContent: "center", alignItems: "center", border: "1px solid #D9D9D9",borderRadius: "4px",marginTop: "20px"}}>
+        {/* <div style={{height: "174px", width: "1195px",margin: "auto",justifyContent: "center", alignItems: "center", border: "1px solid #D9D9D9",borderRadius: "4px",marginTop: "20px"}}>
           <div style={experienceStyle.experienceInnerDiv}>
             <Typography style={experienceStyle.expeTitle}>Socials</Typography>
             <AddIcon style={{ color: "#FFF", height: "30px", width: "30px" }} />
@@ -721,10 +740,10 @@ export default class ProfileInfo extends Component {
             </div>
             <EditIcon />
           </div>
-        </div>
+        </div> */}
 
         {/* ------------------------------Socials end--------------------------------------------------- */}
-        <div style={{height: "30px"}}></div>
+        {/* <div style={{height: "30px"}}></div> */}
       </div>
     );
   }
@@ -734,13 +753,13 @@ const webStyle = {
   // profile section start
   profileinfoDiv: {
     height: "189px",
-    width: "1093px",
+    maxWidth: "1093px",
     display: "flex",
     gap: "47px",
     margin: "auto",
   },
   profileimgDiv: {
-    width: "189px",
+    maxWidth: "189px",
   },
   profileImg: {
     borderRadius: "189px",
@@ -889,10 +908,10 @@ const webStyle = {
 
   // info and work section start
   worlInfoDiv: {
-    width: "1195px",
+    // maxWidth: "1195px",
+    width: "90%",
     margin: "auto",
     marginTop: "100px",
-    // other Div css
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -922,7 +941,10 @@ const webStyle = {
     lineHeight: "24px",
   },
   buttonDiv: {
+    // width: "100%",
     display: "flex",
+    flexWrap: "wrap",
+    boxSizing: "content-box",
     gap: "8px",
     marginTop: "19px",
   },
@@ -940,10 +962,11 @@ const webStyle = {
     whiteSpace: "nowrap",
     textTransform: "none",
   },
-  // info and work section end
+  // info and work sectioavailabilityInnerDivn end
   // user info section start
   userDescDiv: {
-    width: "1195px",
+    // maxWidth: "1195px",
+    width: "90%",
     height: "503px",
     margin: "auto",
     marginTop: "100px",
@@ -952,11 +975,16 @@ const webStyle = {
     border: "1px solid #D9D9D9",
     borderRadius: "4px",
     padding: "20px",
-    display: "grid",
+    gap:"8px",
+    display: "flex",
+    flexDirection:"column"
+
   },
   userDescInnerDiv: {
     display: "flex",
     justifyContent: "space-between",
+    // flexWarp: "wrap",
+    flexShrink: "1",
     width: "100%",
   },
   userDescName: {
@@ -967,7 +995,7 @@ const webStyle = {
     letterSpacing: "-0.15px",
   },
   descDiv: {
-    width: "1093px",
+    // width: "1093px",
     marginTop: "13px",
     alignSelf: "center",
   },
@@ -981,8 +1009,9 @@ const webStyle = {
 
   // Availability section start
   availabilityDiv: {
-    width: "1195px",
-    height: "503px",
+    // maxWidth: "1195px",
+    width: "90%",
+    // height: "503px",
     margin: "auto",
     marginTop: "50px",
     justifyContent: "center",
@@ -993,7 +1022,8 @@ const webStyle = {
   availabilityInnerDiv: {
     display: "flex",
     justifyContent: "space-between",
-    width: "1195px",
+    width: "100%",
+    margin: "auto",
     height: "61px",
     background: "#000",
     padding: "20px",
@@ -1040,7 +1070,7 @@ const webStyle = {
     fontFamily: "Silka",
     lineHeight: "normal",
     letterSpacing: "-0.15px",
-    alignSelf: "self-end",
+    alignSelf: "center",
     marginLeft: "8px",
   },
   unavailability: {
