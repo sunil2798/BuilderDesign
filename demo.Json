@@ -1,0 +1,37 @@
+{
+  "data": {
+    "id": "19",
+    "type": "profile",
+    "attributes": {
+      "id": 19,
+      "country": "India",
+      "county": "Rajasthan",
+      "city": "Jodhpur",
+      "postal_code": "310001",
+      "account_id": 79,
+      "first_name": "Rahul",
+      "last_name": "Jangid",
+      "bio": "Demo Bio",
+      "skill": ["demo skill"],
+      "phone_number": "9988776655",
+      "profession": ["proffesion1", "proffesion2"],
+      "headline": "Demo healine",
+      "company_name": "Test company",
+      "company_number": "",
+      "registered_address": "Test address",
+      "vat_number": "123123123",
+      "availability": "open",
+      "thumbs_up_count": 2,
+      "visibility_option": "anyone",
+      "dates": ["2024-02-01"],
+      "seniority_level": "intern",
+      "work_location": "online",
+      "work_schedule": "part_time",
+      "hourly_rate": "6.0",
+      "collaborators": ["demo collaborators"],
+      "tags": ["test tags"],
+      "description": "Demo descriptio",
+      "photo": "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7fe7d9e34595487e27e341e53050367f28a0f223/about.png"
+    }
+  }
+}

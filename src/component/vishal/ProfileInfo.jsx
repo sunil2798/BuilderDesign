@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./profileInfo.css";
-import profileImg from "../../img/profileImg.png";
+import profileImg from "../../img/profileImg.png";  
 import { Box, Button, TextField, Typography } from "@material-ui/core";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import EditIcon from "@material-ui/icons/Edit";

@@ -98,12 +98,7 @@ export default class Header extends Component {
                     </div>
                     <Box style={{ width: "190px" }}>
                       <Typography
-                        style={{
-                          borderBottom: "0.6px solid #9B9B9D",
-                          width: "160px",
-                          opacity: "16%",
-                          margin: "auto",
-                        }}
+                        style={webStyle.borderDiv}
                       />
                     </Box>
                     <div>
@@ -113,12 +108,7 @@ export default class Header extends Component {
                     </div>
                     <Box style={{ width: "190px" }}>
                       <Typography
-                        style={{
-                          borderBottom: "0.6px solid #9B9B9D",
-                          width: "160px",
-                          opacity: "16%",
-                          margin: "auto",
-                        }}
+                        style={webStyle.borderDiv}
                       />
                     </Box>
                     <div>
@@ -149,12 +139,7 @@ export default class Header extends Component {
               >
                 <Box style={{ width: "190px" }}>
                   <Typography
-                    style={{
-                      borderBottom: "0.6px solid #9B9B9D",
-                      width: "160px",
-                      opacity: "16%",
-                      margin: "auto",
-                    }}
+                    style={webStyle.borderDiv}
                   />
                 </Box>
 
@@ -170,12 +155,7 @@ export default class Header extends Component {
                 </div>
                 <Box style={{ width: "190px" }}>
                   <Typography
-                    style={{
-                      borderBottom: "0.6px solid #9B9B9D",
-                      width: "160px",
-                      opacity: "16%",
-                      margin: "auto",
-                    }}
+                    style={webStyle.borderDiv}
                   />
                 </Box>
                 <div>
@@ -326,5 +306,11 @@ const webStyle = {
     justifyContent: "space-between",
     width: "100%",
     height: "55px",
+  },
+  borderDiv: {
+    borderBottom: "0.6px solid #9B9B9D",
+    width: "160px",
+    opacity: "16%",
+    margin: "auto",
   }
 };
