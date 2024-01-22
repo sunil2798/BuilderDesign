@@ -536,7 +536,7 @@ export default class ProfileInfo extends Component {
         {/* --------------------Experience end-------------------------------- */}
 
         {/* -----------------------Education start--------------------------------------------- */}
-        {/* <div style={experienceStyle.experienceDiv}>
+        <div style={experienceStyle.experienceDiv}>
           <div style={experienceStyle.experienceInnerDiv}>
             <Typography style={experienceStyle.expeTitle}>Education</Typography>
             <AddIcon style={{ color: "#FFF", height: "30px", width: "30px" }} />
@@ -722,11 +722,11 @@ export default class ProfileInfo extends Component {
               </div>
             </div>
           </div>
-        </div> */}
+        </div>
         {/* ------------------------Education end-------------------------------------------- */}
 
         {/* -----------------------------Socials start --------------------------------------------------- */}
-        {/* <div style={{height: "174px", width: "1195px",margin: "auto",justifyContent: "center", alignItems: "center", border: "1px solid #D9D9D9",borderRadius: "4px",marginTop: "20px"}}>
+        <div style={{height: "174px", width: "1195px",margin: "auto",justifyContent: "center", alignItems: "center", border: "1px solid #D9D9D9",borderRadius: "4px",marginTop: "20px"}}>
           <div style={experienceStyle.experienceInnerDiv}>
             <Typography style={experienceStyle.expeTitle}>Socials</Typography>
             <AddIcon style={{ color: "#FFF", height: "30px", width: "30px" }} />
@@ -740,7 +740,7 @@ export default class ProfileInfo extends Component {
             </div>
             <EditIcon />
           </div>
-        </div> */}
+        </div>
 
         {/* ------------------------------Socials end--------------------------------------------------- */}
         {/* <div style={{height: "30px"}}></div> */}

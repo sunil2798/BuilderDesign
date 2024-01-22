@@ -1,64 +1,248 @@
-import { Typography } from "@material-ui/core";
 import React, { Component } from "react";
+import { Button, TextField, Typography } from "@material-ui/core";
 import loginPosterImage from "../../../../img/loginPosterImage.png";
-
+import logoV from "../../../../img/logoV.png";
+import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 
 export default class LogIn extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      showPassword: "",
+    };
+  }
+  handleVisibilityOn = (event) => {
+    this.setState ({
+      showPassword: event.target.values
+    })
   }
   render() {
+    console.log("show password", this.state.showPassword);
+
     return (
-      <div>
-        <div style={webStyle.logInCard}>
-          <div>
-            <Typography>Login</Typography>
-          </div>
-          <div>
-            <input type="email" name="email" id="email" />
-          </div>
-          <div>
-            <input type="password" name="password" id="password" />
-          </div>
-          <div>
-            <Typography>Forgot Password?</Typography>
-          </div>
-          <div>
-            <button type="submit">Log In</button>
-          </div>
-          <div>
-            <Typography>or</Typography>
-          </div>
-          <div>
-            <div>
-              <Typography>Don't have an account?</Typography>
+      <div style={webStyle.loginDiv}>
+        <div style={{marginLeft: "40px", marginTop: "35px"}}>
+        <img src={logoV} alt="logo" style={webStyle.logoImg} />
+        </div>
+          
+        <div style={webStyle.logInLeft}>
+          {/* <div style={{ width: "100%" }}>
+            <img src={logoV} alt="logo" style={webStyle.logoImg} />
+          </div> */}
+          <div
+            style={{
+              width: "360px",
+              gap: "8px",
+              flexShrink: "0",
+              position: "relative",
+            }}
+          >
+            <div style={webStyle.joinForgeDiv}>
+            <Typography style={webStyle.joinForge}> Join Forge</Typography>
             </div>
             <div>
-              <Typography>Sign Up</Typography>
+              <TextField
+                variant="outlined"
+                placeholder="Email"
+                style={webStyle.inputfieldHeight}
+              />
+            </div>
+            <div>
+              <TextField
+                variant="outlined"
+                placeholder="Password"
+                type={this.state.showPassword ? "text" : "password"}
+                style={webStyle.inputfieldHeight}
+              />
+              <VisibilityOffIcon onClick={this.handleVisibilityOn} style={webStyle.passwordVisibilityOffIcon} />
+            </div>
+            <div>
+              <TextField
+                variant="outlined"
+                placeholder="Re-Password"
+                style={webStyle.inputfieldHeight}
+              />
+              <VisibilityOffIcon
+                style={webStyle.reEnterpasswordVisibilityOffIcon}
+              />
+            </div>
+            <div style={{marginTop: "20px"}}>
+              <Typography style={webStyle.agreeTC}>
+                By joining Forge you agree to our{" "}
+                <spam style={webStyle.tCPP}>Terms & Conditions</spam>and
+                <span style={webStyle.tCPP}>Privacy Policy</span>
+              </Typography>
+            </div>
+            <div style={{marginTop: '60px'}}>
+              <Button variant="outlined" style={webStyle.signUpButton}>
+                Sign Up
+              </Button>
+            </div>
+            <div style={webStyle.orDiv}>
+              <div>
+                <Typography style={webStyle.borderOr} />
+              </div>
+              <Typography style={webStyle.or}>or</Typography>
+              <div>
+                <Typography style={webStyle.borderOr} />
+              </div>
+            </div>
+            <div style={webStyle.aHAccountDiv}>
+              <Typography style={webStyle.aHAccount}>
+                Already have an account?
+                <span style={webStyle.logInlink}>Log in</span>
+              </Typography>
             </div>
           </div>
         </div>
-				<div>
-					<img 
-						src={loginPosterImage}
-						alt="login poster"
-					/>
-				</div>
+
+        <div style={webStyle.logInRight}>
+          <img
+            src={loginPosterImage}
+            alt="login poster"
+            style={webStyle.rightImage}
+          />
+        </div>
       </div>
     );
   }
 }
 
 const webStyle = {
-  logInCard: {
-    width: "1440px",
-    height: "900px",
-    background: "grey",
-    display: "grid",
+  loginDiv: {
+    display: "flex",
+    justifyContent: "space-between",
+    height: "100%",
+    width: "100%",
+    overflow: "hidden",
+  },
+  logInLeft: {
+    maxWidth: "70%",
+    height: "100%",
+    margin: "auto",
+    display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
-    // alignItems: "center",
-    // 	background: "var(--White, #FFF)",
-    // 	box-shadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+    alignItems: "center",
+  },
+  logoImg: {
+    height: "44px",
+    width: "34px",
+    flexShrink: "0",
+    cover: "no-repeat",
+  },
+  inputfieldHeight: {
+    height: "56px",
+  },
+  passwordVisibilityOffIcon: {
+    position: "absolute",
+    left: "320px",
+    top: "100px",
+    width: "24px",
+    height: "24px",
+    flexShrink: "0",
+    color: "#9B9B9D",
+  },
+  reEnterpasswordVisibilityOffIcon: {
+    position: "absolute",
+    left: "320px",
+    top: "155px",
+    width: "24px",
+    height: "24px",
+    flexShrink: "0",
+    color: "#9B9B9D",
+  },
+  agreeTC: {
+    color: "#0F172A",
+    fontFamily: " Silka",
+    fontSize: "12px",
+    fontStyle: "normal",
+    fontWeight: "200",
+    lineHeight: "16px",
+  },
+  tCPP: {
+    color: " #000",
+    fontFamily: "Silka",
+    fontSize: "12px",
+    fontStyle: "normal",
+    fontWeight: "500",
+    lineHeight: "16px",
+    textDecorationLine: "underline",
+  },
+  signUpButton: {
+    fontFamily: "Silka",
+    fontSize: "16px",
+    fontStyle: "normal",
+    fontHeight: "500",
+    lineHeight: "24px",
+    color: "#FFF",
+    backgroundColor: "#9B9B9D",
+    height: "56px",
+    width: "100%",
+    textTransform: "capitalize",
+  },
+  orDiv: {
+    marginTop: "22px",
+    marginBottom: "42px",
+    display: "flex",
+    alignItems: "center",
+  },
+  or: {
+    marginLeft: "8px",
+    marginRight: "8px",
+    color: "#9B9B9D",
+    fontFamily: "Silka",
+    fontSize: "12px",
+    fontStyle: "normal",
+    fontWeight: "500",
+    lineHeight: "24px",
+  },
+  borderOr: {
+    borderBottom: "1px solid #DFDFDF",
+    width: "165px",
+  },
+  aHAccountDiv: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  aHAccount: {
+    color: " #9B9B9D",
+    fontFamily: "Silka",
+    fontSize: "16px",
+    fontStyle: "normal",
+    fontHeight: "500",
+    lineHeight: "22px",
+  },
+  logInlink: {
+    marginLeft: "8px",
+    color: "#000",
+    fontFamily: "Silka",
+    fontSize: "16px",
+    fontStyle: "normal",
+    fontHeight: "500",
+    lineHeight: "22px",
+  },
+  joinForgeDiv: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  joinForge : {
+    color: "#000",
+    textAlign: "center",
+    fontFamily: "Silka",
+    fontSize: "24px",
+    fontStyle: "normal",
+    fontWeight: "500",
+    lineHeight: "32px",
+    letterSpacing: "-0.12px",
+  },
+  // ---------------------------------
+  logInRight: {
+    maxWidth: "30%",
+    height: "100%",
+  },
+  rightImage: {
+    height: "100%",
+    width: "100%",
   },
 };
