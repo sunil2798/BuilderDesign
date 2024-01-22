@@ -1,34 +1,58 @@
 import React, { Component } from "react";
-import { Button, TextField, Typography } from "@material-ui/core";
+import { Box, Button, TextField, Typography } from "@material-ui/core";
 import loginPosterImage from "../../../../img/loginPosterImage.png";
 import logoV from "../../../../img/logoV.png";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import { Formik, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
+
+const validationSchema = Yup.object().shape({
+  email: Yup.string()
+    .required("Please enter your email")
+    .matches(
+      /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+      "Invalid email address"
+    ),
+  password: Yup.string()
+    .required("Please enter your password.")
+    .matches(
+      /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/,
+      "password must contain 6 or more characters with at least one of each: uppercase, lowercase, number and special"
+    )
+    .max(15, "maximum 15 characters"),
+  passwordConfirmation: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Passwords must match")
+    .required("confirm your password"),
+});
 
 export default class LogIn extends Component {
   constructor() {
     super();
     this.state = {
+      email: "",
+      password: "",
+      passwordConfirmation: "",
       showPassword: "",
     };
   }
+
   handleVisibilityOn = (event) => {
-    this.setState ({
-      showPassword: event.target.values
-    })
-  }
+    this.setState({
+      showPassword: event.target.values,
+    });
+  };
+
   render() {
     console.log("show password", this.state.showPassword);
 
     return (
       <div style={webStyle.loginDiv}>
-        <div style={{marginLeft: "40px", marginTop: "35px"}}>
-        <img src={logoV} alt="logo" style={webStyle.logoImg} />
+        <div style={{ marginLeft: "40px", marginTop: "35px" }}>
+          <img src={logoV} alt="logo" style={webStyle.logoImg} />
         </div>
-          
+
         <div style={webStyle.logInLeft}>
-          {/* <div style={{ width: "100%" }}>
-            <img src={logoV} alt="logo" style={webStyle.logoImg} />
-          </div> */}
           <div
             style={{
               width: "360px",
@@ -37,6 +61,7 @@ export default class LogIn extends Component {
               position: "relative",
             }}
           >
+
             <div style={webStyle.joinForgeDiv}>
             <Typography style={webStyle.joinForge}> Join Forge</Typography>
             </div>
@@ -93,6 +118,7 @@ export default class LogIn extends Component {
                 <span style={webStyle.logInlink}>Log in</span>
               </Typography>
             </div>
+            
           </div>
         </div>
 
@@ -111,8 +137,8 @@ export default class LogIn extends Component {
 const webStyle = {
   loginDiv: {
     display: "flex",
-    justifyContent: "space-between",
-    height: "100%",
+    // justifyContent: "space-between",
+    height: "100vh",
     width: "100%",
     overflow: "hidden",
   },
@@ -142,6 +168,15 @@ const webStyle = {
     height: "24px",
     flexShrink: "0",
     color: "#9B9B9D",
+  },
+  passwordVisibilityOnIcon: {
+    position: "absolute",
+    left: "320px",
+    top: "100px",
+    width: "24px",
+    height: "24px",
+    flexShrink: "0",
+    color: "#000",
   },
   reEnterpasswordVisibilityOffIcon: {
     position: "absolute",
@@ -226,7 +261,7 @@ const webStyle = {
     display: "flex",
     justifyContent: "center",
   },
-  joinForge : {
+  joinForge: {
     color: "#000",
     textAlign: "center",
     fontFamily: "Silka",
