@@ -4,7 +4,7 @@ import loginPosterImage from "../../img/loginPosterImage.png";
 import logoV from "../../img/logoV.png";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import { Formik, Form, ErrorMessage } from "formik";
+import { Formik } from "formik";
 import * as Yup from "yup";
 
 const validationSchema = Yup.object().shape({
@@ -12,13 +12,13 @@ const validationSchema = Yup.object().shape({
     .required("Please enter your email")
     .matches(
       /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-      "Invalid email address"
+      "The password should have at least one lower case and one upper case characters."
     ),
   password: Yup.string()
     .required("Please enter your password.")
     .matches(
       /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/,
-      "password must contain 6 or more characters with at least one of each: uppercase, lowercase, number and special"
+      "The password should have at least one lower case and one upper case characters."
     )
     .max(15, "maximum 15 characters"),
   passwordConfirmation: Yup.string()
@@ -34,17 +34,24 @@ export default class LoginFormik extends Component {
       password: "",
       passwordConfirmation: "",
       showPassword: false,
+      showRePassWord: false,
     };
   }
 
-  handleVisibilityOn = (event) => {
+  handlePassShow = () => {
     this.setState({
-      showPassword: event.target.values,
+      showPassword: !this.state.showPassword,
+    });
+  };
+
+  handleRePassShow = () => {
+    this.setState({
+      showRePassWord: !this.state.showRePassWord,
     });
   };
 
   render() {
-    console.log("show password", this.state.showPassword);
+    console.log("show password--->>>>>", this.state.showPassword);
 
     return (
       <div style={webStyle.loginDiv}>
@@ -58,11 +65,10 @@ export default class LoginFormik extends Component {
               width: "360px",
               gap: "8px",
               flexShrink: "0",
-              position: "relative",
             }}
           >
+            {/* change component structure start */}
             {/* formik start */}
-
             <Formik
               initialValues={{
                 email: this.state.email,
@@ -104,13 +110,16 @@ export default class LoginFormik extends Component {
                         });
                       }}
                     />
-                    <FieldError error={errors.email} touched={touched.email} />
+                    <FieldErrorEmail
+                      error={errors.email}
+                      touched={touched.email}
+                    />
                   </Box>
 
-                  <Box>
+                  <Box style={{ position: "relative" }}>
                     <TextField
                       type={this.state.showPassword ? "text" : "password"}
-                      style={webStyle.inputfieldHeight}
+                      style={webStyle.inputfieldHeightPass}
                       variant="outlined"
                       placeholder="password"
                       value={this.state.password}
@@ -122,25 +131,26 @@ export default class LoginFormik extends Component {
                         });
                       }}
                     />
-
-                    {this.state.showPassword ? (
-                      <VisibilityIcon
-                        style={webStyle.passwordVisibilityOnIcon}
-                      />
-                    ) : (
-                      <VisibilityOffIcon
-                        onClick={this.handleVisibilityOn}
-                        style={webStyle.passwordVisibilityOffIcon}
-                      />
-                    )}
-
+                    <span onClick={this.handleVisibilityOn}>
+                      {!this.state.showPassword ? (
+                        <VisibilityOffIcon
+                          style={webStyle.passwordVisibilityOffIcon}
+                          onClick={this.handlePassShow}
+                        />
+                      ) : (
+                        <VisibilityIcon
+                          style={webStyle.passwordVisibilityOnIcon}
+                          onClick={this.handlePassShow}
+                        />
+                      )}
+                    </span>
                     <FieldError
                       error={errors.password}
                       touched={touched.password}
                     />
                   </Box>
 
-                  <Box>
+                  <Box style={{ position: "relative" }}>
                     <TextField
                       variant="outlined"
                       style={webStyle.inputfieldHeight}
@@ -158,9 +168,19 @@ export default class LoginFormik extends Component {
                         });
                       }}
                     />
-                    <VisibilityOffIcon
-                      style={webStyle.reEnterpasswordVisibilityOffIcon}
-                    />
+                    <span onClick={this.handleVisibilityOn}>
+                      {!this.state.showRePassWord ? (
+                        <VisibilityOffIcon
+                          style={webStyle.reEnterpasswordVisibilityOffIcon}
+                          onClick={this.handleRePassShow}
+                        />
+                      ) : (
+                        <VisibilityIcon
+                          style={webStyle.reEnterpasswordVisibilityOnIcon}
+                          onClick={this.handleRePassShow}
+                        />
+                      )}
+                    </span>
                     <FieldError
                       error={errors.passwordConfirmation}
                       touched={touched.passwordConfirmation}
@@ -198,20 +218,11 @@ export default class LoginFormik extends Component {
                       <span style={webStyle.logInlink}>Log in</span>
                     </Typography>
                   </div>
-
-                  <Typography
-                    variant="h6"
-                    style={{
-                      color: "red",
-                      fontSize: "14px",
-                    }}
-                  >
-                    {this.state.errorEmailExistBo}
-                  </Typography>
                 </form>
               )}
             </Formik>
             {/* formik end */}
+            {/* change component structure start */}
           </div>
         </div>
 
@@ -252,10 +263,15 @@ const webStyle = {
   inputfieldHeight: {
     height: "56px",
   },
+  inputfieldHeightPass: {
+    height: "56px",
+    marginTop: "16px",
+    marginBottom: "16px",
+  },
   passwordVisibilityOffIcon: {
     position: "absolute",
-    left: "320px",
-    top: "100px",
+    right: "20px",
+    top: "25px",
     width: "24px",
     height: "24px",
     flexShrink: "0",
@@ -263,8 +279,8 @@ const webStyle = {
   },
   passwordVisibilityOnIcon: {
     position: "absolute",
-    left: "320px",
-    top: "100px",
+    right: "20px",
+    top: "25px",
     width: "24px",
     height: "24px",
     flexShrink: "0",
@@ -272,12 +288,21 @@ const webStyle = {
   },
   reEnterpasswordVisibilityOffIcon: {
     position: "absolute",
-    left: "320px",
-    top: "155px",
+    right: "20px",
+    top: "10px",
     width: "24px",
     height: "24px",
     flexShrink: "0",
     color: "#9B9B9D",
+  },
+  reEnterpasswordVisibilityOnIcon: {
+    position: "absolute",
+    right: "20px",
+    top: "10px",
+    width: "24px",
+    height: "24px",
+    flexShrink: "0",
+    color: "#000",
   },
   agreeTC: {
     color: "#0F172A",
@@ -352,6 +377,7 @@ const webStyle = {
   joinForgeDiv: {
     display: "flex",
     justifyContent: "center",
+    marginBottom: "70px",
   },
   joinForge: {
     color: "#000",
@@ -372,10 +398,31 @@ const webStyle = {
     height: "100%",
     width: "100%",
   },
+  error: {
+    color: "#DC2626",
+    fontFamily: "Silka",
+    fontSize: "12px",
+    fontStyle: "normal",
+    fontWeight: "300",
+    lineHeight: "18px",
+  },
+  emailError: {
+    color: "#9B9B9D",
+    fontFamily: "Silka",
+    fontSize: "12px",
+    fonStyle: "normal",
+    fontWeight: "200",
+    lineHeight: "normal",
+    letterSpacing: "0.24px",
+  },
 };
 
 function FieldError({ error, touched }) {
+  return error && touched ? <div style={webStyle.error}>{error}</div> : null;
+}
+
+function FieldErrorEmail({ error, touched }) {
   return error && touched ? (
-    <div style={{ color: "#e65e52" }}>{error}</div>
+    <div style={webStyle.emailError}>{error}</div>
   ) : null;
 }
