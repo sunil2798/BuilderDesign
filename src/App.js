@@ -24,6 +24,7 @@ import EditProfile from './component/vishal/EditProfile';
 import Header from './component/vishal/Header';
 import LogIn from './component/vishal/byVishal/logIn/LogIn';
 import LoginFormik from './component/vishal/LoginFormik';
+import LogInFormWithFormik from './component/vishal/LogInFormWithFormik';
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
         <Route path='/header' element={<Header />} />
         <Route path='/login' element={<LogIn />} />
         <Route path='/loginformik' element={<LoginFormik />} />
+        <Route path='/loginform' element={<LogInFormWithFormik />} />
       </Routes>
     </BrowserRouter>
 

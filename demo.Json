@@ -35,3 +35,12 @@
     }
   }
 }
+
+
+const authData = {
+  "username": "rakhi sharma",
+  "password": "rakhi@123"
+  };
+  localstorage.setItems(authData);
+  localstorage.getItems(authData);
+
