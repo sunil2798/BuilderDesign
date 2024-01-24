@@ -23,7 +23,7 @@ import IndianPatient from './component/himanshuGupta/IndianPatient';
 import EditProfile from './component/vishal/EditProfile';
 import Header from './component/vishal/Header';
 import LogIn from './component/vishal/byVishal/logIn/LogIn';
-import LoginFormik from './component/vishal/LoginFormik';
+import SignUpFormik from './component/vishal/SignUpFormik';
 
 function App() {
   return (
@@ -52,7 +52,7 @@ function App() {
         <Route path='/editprofile' element={<EditProfile />} />
         <Route path='/header' element={<Header />} />
         <Route path='/login' element={<LogIn />} />
-        <Route path='/loginformik' element={<LoginFormik />} />
+        <Route path='/signupformik' element={<SignUpFormik />} />
       </Routes>
     </BrowserRouter>
 
