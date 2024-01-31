@@ -4,6 +4,7 @@ import logoV from "../../img/logoV.png";
 import SignUp from "./signupScreenComponent/SignUp";
 import ForgotPass from "./signupScreenComponent/ForgotPass";
 import PasswordSuccess from "./signupScreenComponent/PasswordSuccess";
+import AboutMe from "./signupScreenComponent/AboutMe";
 
 
 export default class SignUpFormik extends Component {
@@ -41,7 +42,8 @@ export default class SignUpFormik extends Component {
         <div style={webStyle.logInLeft}>
           <div
             style={{
-              width: "360px",
+              // width: "360px", // use this for SignUp,ForgotPass,PasswordSuccess
+              width: "672px",  // use this
               gap: "8px",
               flexShrink: "0",
             }}
@@ -50,7 +52,8 @@ export default class SignUpFormik extends Component {
            
             {/* <SignUp /> */}
             {/* <ForgotPass /> */}
-            <PasswordSuccess />
+            {/* <PasswordSuccess /> */}
+            <AboutMe />
 
             {/* change component structure start */}
           </div>

@@ -7,3 +7,6 @@
   width: 100% !important;
   align-self: center !important;
 }
+.MuiMenu-list {
+  background-color: #fff;
+}
