@@ -50,7 +50,7 @@ export default class SignUpFormik extends Component {
           >
             {/* change component structure start */}
            
-            {/* <SignUp /> */}
+            <SignUp />
             {/* <ForgotPass /> */}
             {/* <PasswordSuccess /> */}
             <AboutMe />
