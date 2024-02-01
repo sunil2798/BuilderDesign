@@ -3,7 +3,21 @@
 }
 .MuiPopover-root {
   position: absolute !important;
-  top:60px !important;
+  top:50px !important;
+  display: grid !important;
+}
+/* phone input */
+.react-tel-input .form-control {
+  height: 48px !important;
+  width: 326px !important;
+  font-size: 16px !important;
+}
+.flag{
+  display: none !important;
+}
+
+.selected-flag {
+  padding-top: 15px !important;
 }
 
 /* toggle css */
@@ -27,7 +41,7 @@
   left: 0;
   right: 15px;
   bottom: 0;
-  background-color: #00FFA7 !important;
+  background-color: #DFDFDF !important;
   -webkit-transition: .4s;
   transition: .4s;
   width: 48px;
@@ -46,7 +60,7 @@
 }
 
 input:checked+.slider {
-  background-color: #00FFA7 !important;
+  background-color: #0D0C22 !important;
 }
 
 input:focus+.slider {
@@ -60,7 +74,7 @@ input:checked+.slider:before {
 }
   /* Rounded sliders */
 .slider.round {
-  border-radius: 50px;
+  border-radius: 40px;
 }
 .slider.round:before {
   border-radius: 50%;
