@@ -1,0 +1,15 @@
+.react-multi-carousel-track {
+    max-width:194px;
+}
+.react-multi-carousel-list {
+    /* margin-top: 20px; */
+    gap: 10px;
+}
+
+.react-multi-carousel-track {
+    gap: 10px;
+}
+.MuiBox-root{
+    padding: 19px 28px !important;
+    background-color: #DFDFDF !important;
+}
