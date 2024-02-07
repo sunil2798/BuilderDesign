@@ -1,3 +1,11 @@
+.MuiInputBase-input {
+  height: 48px !important;
+  width: 326px !important;
+  flex-shrink: 0 !important;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 /* toggle css */
 .switch {
   position: relative;

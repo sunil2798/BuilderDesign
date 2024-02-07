@@ -99,9 +99,9 @@ export default class DragAndDrop extends Component {
         <TextField
           id="file-upload"
           type="file"
+          accept="image/*, .png, .jpeg"
           style={{ display: "none" }}
           onChange={this.onFileChange}
-          accept="image/*"
         />
         <label htmlFor="file-upload">
           <Box

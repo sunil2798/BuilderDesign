@@ -44,9 +44,9 @@ export default class SignUpFormik extends Component {
           <div
             style={{
               // width: "360px", // use this for SignUp,ForgotPass,PasswordSuccess
-               width: "672px",  // use this width for AboutMe
+              maxWidth: "672px",  // use this width for AboutMe
               gap: "8px",
-              flexShrink: "0",
+              flexShrink: "1",
             }}
           >
             {/* change component structure start */}

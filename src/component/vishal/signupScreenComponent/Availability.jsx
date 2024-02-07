@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Box, Button, TextField, Typography } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 import "./availability.css";
 import "react-phone-input-2/lib/style.css";
 import { Formik } from "formik";
@@ -33,6 +34,14 @@ export default class Availability extends Component {
       checked: !this.state.checked,
     });
   };
+  componentDidMount() {
+    // const dateControl = document.querySelector('input[type="date"]');
+    // dateControl.value = "2";
+    // console.log(dateControl.value);
+    // console.log(dateControl.valueAsNumber);
+    // document.querySelector('input[type="date"]').innerHTML = "";
+    // document.querySelector('input[type="date"]').value.replace("yyyy/mm/dd", "");
+  }
 
   render() {
     return (
@@ -61,7 +70,7 @@ export default class Availability extends Component {
             <form autoComplete="off" onSubmit={handleSubmit}>
               <div
                 style={{
-                  maxWidth: "672px",
+                  // maxWidth: "672px",
                   display: "flex",
                   flexDirection: "column",
                 }}
@@ -72,8 +81,7 @@ export default class Availability extends Component {
                     color: "#0D0C22",
                     fontSize: "24px",
                     fontWeight: 500,
-                    fontStyle: "normal",
-                    lineHeight: "-0.15px",
+                    lineHeight: "28.96px",
                   }}
                 >
                   Availability
@@ -81,16 +89,35 @@ export default class Availability extends Component {
 
                 <Box
                   style={{
-                    maxWidth: "672px",
+                    // maxWidth: "672px",
                     display: "flex",
                     flexDirection: "column",
                     gap: "24px",
-                    marginTop: "36px",
+                    marginTop: "46px",
+                    marginBottom: "46px",
                   }}
                 >
                   <Box style={{ display: "flex", gap: "24px" }}>
-                    <Typography style={{ color: "#9B9B9D" }}>
-                      <span style={{ fontWeight: 600, color: "#0D0C22" }}>
+                    <Typography
+                      style={{
+                        color: "#9B9B9D",
+                        fontWeight: 200,
+                        fontFamily: "Silka",
+                        fontSize: "14px",
+                        lineHeight: "16.8px",
+                        letterSpacing: "-0.15px",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontWeight: 500,
+                          color: "#0D0C22",
+                          fontFamily: "Silka",
+                          fontSize: "16px",
+                          lineHeight: "19.3px",
+                          letterSpacing: "-0.15px",
+                        }}
+                      >
                         Open for opportunities.
                       </span>
                       Are you interested in work either now or in the future?
@@ -116,7 +143,7 @@ export default class Availability extends Component {
                           lineHeight: "-0.15px",
                         }}
                       >
-                        Unavailability
+                        Unavailability :
                       </Typography>
                       <Box
                         style={{
@@ -129,28 +156,59 @@ export default class Availability extends Component {
                           paddingTop: "24px",
                         }}
                       >
-                        <Box style={{ maxWidth: "326px" }}>
+                        <Box
+                        style={{ maxWidth: "326px" }}
+                        >
                           <TextField
+                            type="date"
+                            name="date"
                             variant="outlined"
-                            style={{ height: "48px", width: "100%" }}
-                            name="firstname"
+                            // style={{ height: "48px", width: "100%" }}
+                            placeholder="Unavailable form"
                           />
                         </Box>
-                        <Box style={{ maxWidth: "326px" }}>
+                        <Box
+                        style={{ maxWidth: "326px" }}
+                        >
                           <TextField
+                            type="date"
+                            name="date"
                             variant="outlined"
-                            style={{ height: "48px", width: "100%" }}
-                            name="lastname"
+                            // style={{ height: "48px", width: "100%" }}
+                            placeholder="Unavailable form"
                           />
                         </Box>
+                      </Box>
+                      <Box
+                        style={{
+                          borderBottom: "1px solid #D9D9D9",
+                          paddingBottom: "24px",
+                          textAlign: "left",
+                        }}
+                      >
+                        <AddIcon style={{ height: "36px", width: "36px" }} />
+                      </Box>
+                      <Box>
+                        <Typography
+                          style={{
+                            fontFamily: "Silka",
+                            fontWeight: 200,
+                            fontSize: "16px",
+                            lineHeight: "19.29px",
+                            letterSpacing: "-0.15px",
+                            color: "#000",
+                          }}
+                        >
+                          Everyone can see this. You can change this later at
+                          any time
+                        </Typography>
                       </Box>
                     </>
                   ) : (
                     ""
                   )}
 
-                  <Box></Box>
-                  <Box style={{ textAlign: "end" }}>
+                  <Box style={{ textAlign: "end", marginTop: "100px" }}>
                     <Button
                       variant="outlined"
                       type="submit"
