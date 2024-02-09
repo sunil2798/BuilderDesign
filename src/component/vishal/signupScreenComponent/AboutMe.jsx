@@ -1,11 +1,13 @@
 import {
   Box,
   Button,
+  ListSubheader,
   MenuItem,
   Select,
   TextField,
   Typography,
 } from "@material-ui/core";
+import SearchIcon from "@material-ui/icons/Search";
 import React, { Component } from "react";
 import upload from "../../../img/upload.png";
 import "./aboutMe.css";
@@ -102,12 +104,11 @@ export default class AboutMe extends Component {
   }
 
   componentDidMount = () => {
-    document.querySelector(".react-tel-input .selected-flag").innerHTML = "+91";
+    // document.querySelector(".react-tel-input .selected-flag").innerHTML = "+91";
     // document.querySelector(".form-control").value = "";
     // const value = document
     //   .querySelector(".react-tel-input .form-control")
     //   .value.replace("+91", "");
-
     // console.log(value);
     // this.setState({ phone: value });
   };
@@ -298,6 +299,10 @@ export default class AboutMe extends Component {
                       displayEmpty
                       inputProps={{ "aria-label": "Without label" }}
                     >
+                       <ListSubheader>
+                        <TextField variant="outlined" placeholder="Search" type="text" />
+                        <SearchIcon style={{ position: "relative", right: "310px", top: "5px",height:"18px",width:"18px"}}/>
+                      </ListSubheader>
                       {this.state.countryTwo.map((countryTwo, id) => (
                         <MenuItem
                           key={id}
@@ -322,6 +327,10 @@ export default class AboutMe extends Component {
                       displayEmpty
                       inputProps={{ "aria-label": "Without label" }}
                     >
+                       <ListSubheader>
+                        <TextField variant="outlined" placeholder="Search" type="text" />
+                        <SearchIcon style={{ position: "relative", right: "310px", top: "5px",height:"18px",width:"18px"}}/>
+                      </ListSubheader>
                       {this.state.countryOne.map((countryOne, id) => (
                         <MenuItem
                           key={id}
@@ -346,14 +355,20 @@ export default class AboutMe extends Component {
                       displayEmpty
                       inputProps={{ "aria-label": "Without label" }}
                     >
+                      <ListSubheader>
+                        <TextField variant="outlined" placeholder="Search" type="text" />
+                        <SearchIcon style={{ position: "relative", right: "310px", top: "5px",height:"18px",width:"18px"}}/>
+                      </ListSubheader>
                       {this.state.countryTwo.map((countryTwo, id) => (
-                        <MenuItem
-                          key={id}
-                          value={countryTwo}
-                          // style={webStyle.inputBackground}
-                        >
-                          {countryTwo}
-                        </MenuItem>
+                        <>
+                          <MenuItem
+                            key={id}
+                            value={countryTwo}
+                            // style={webStyle.inputBackground}
+                          >
+                            {countryTwo}
+                          </MenuItem>
+                        </>
                       ))}
                     </Select>
                   </Box>
