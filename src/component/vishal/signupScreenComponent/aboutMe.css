@@ -1,11 +1,11 @@
 input[type="text"]::placeholder {
   text-align: start;
-  padding-left: 28px;
+  /* padding-left: 28px; */
   color: #0D0C22 !important;
 }
-input {
+/* input {
   padding-left: 10px !important;
-}
+} */
 .MuiMenu-list {
   background-color: #fff;
 }

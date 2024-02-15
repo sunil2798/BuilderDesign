@@ -16,42 +16,74 @@ import "react-phone-input-2/lib/style.css";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
+// const phoneNumberRules = /^(?:(?:\+|0{0,2})91(\s*[-]\s*)?|[0]?)?[789]\d{9}$/;
+
 const validationSchema = Yup.object().shape({
   firstName: Yup.string()
     .min(2, "Too Short!")
     .max(30, "Too Long!")
     .required("First Name is required"),
-
   lastName: Yup.string()
     .min(2, "Too Short!")
     .max(30, "Too Long!")
     .required("Last Name is required"),
+  phone: Yup.string().max(10).required("Phone Number is required"),
+  countryFirst: Yup.string()
+    .min(2, "Too Short!")
+    .max(30, "Too Long!")
+    .required("Country Name is required"),
+  countrySecond: Yup.string()
+    .min(2, "Too Short!")
+    .max(30, "Too Long!")
+    .required("Country Name is required"),
+  townn: Yup.string()
+    .min(2, "Too Short!")
+    .max(30, "Too Long!")
+    .required("Town Name is required"),
+  rAddress: Yup.string()
+    .min(6, "Too Short!")
+    .max(30, "Too Long!")
+    .required("Address is required"),
+  cName: Yup.string()
+    .min(4, "Too Short!")
+    .max(30, "Too Long!")
+    .required("Company Name is required"),
+  cNumber: Yup.string()
+    .required("required")
+    .matches(/^\+\d{1,3}[- ]?\d{1,14}$/, {
+      message: "Invalid number",
+      excludeEmptyString: false
+    })
+    .max(10)
+    .required("Company Number is required"),
+  vatNumber: Yup.string().max(10).required("VAT Number is required"),
 });
+
+// var validate = require('validate-vat');
+// validate( 'xx',  'xxxxxxx',  function(err, validationInfo) {
+//     console.log(validationInfo);
+// });
 
 function FieldError({ error, touched }) {
   return error && touched ? <div style={webStyle.error}>{error}</div> : null;
-}
-
-function FieldErrorEmail({ error, touched }) {
-  return error && touched ? (
-    <div style={webStyle.emailError}>{error}</div>
-  ) : null;
 }
 
 export default class AboutMe extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      rAddress: "",
+      vatNumber: "",
+      cName: "",
+      cNumber: "",
       firstName: "",
       lastName: "",
       countryFirst: "",
-      coountrySecond: "",
+      countrySecond: "",
       townn: "",
-      age: "",
       checked: false,
       dialCode: "",
       phone: "",
-      rawPhone: "",
       countryOne: [
         "April Tucker",
         "Ralph Hubbard",
@@ -81,7 +113,19 @@ export default class AboutMe extends Component {
 
   dropDownHandle = (event) => {
     this.setState({
-      age: event.target.value,
+      countryFirst: event.target.value,
+    });
+  };
+
+  dropDownHandleSec = (event) => {
+    this.setState({
+      countrySecond: event.target.value,
+    });
+  };
+
+  dropDownHandleTown = (event) => {
+    this.setState({
+      townn: event.target.value,
     });
   };
 
@@ -94,13 +138,13 @@ export default class AboutMe extends Component {
   handleOnChange(phone, value) {
     console.log("value", value);
     console.log("phone", phone);
-    this.setState({ phone: phone.replace(value.dialCode, "") });
-    document.querySelector(".react-tel-input .selected-flag").innerHTML =
-      value.dialCode;
-    document.querySelector(".form-control").value = phone.replace(
-      value.dialCode,
-      ""
-    );
+    // this.setState({ phone: phone.replace(value.dialCode, "") });
+    // document.querySelector(".react-tel-input .selected-flag").innerHTML =
+    //   value.dialCode;
+    // document.querySelector(".form-control").value = phone.replace(
+    //   value.dialCode,
+    //   ""
+    // );
   }
 
   componentDidMount = () => {
@@ -116,6 +160,11 @@ export default class AboutMe extends Component {
   render() {
     console.log("toggle", this.state.checked);
     console.log("dropdown list check", this.state.age);
+    console.log("Country Two:", this.state.countryTwo);
+    console.log("phone.......", this.state.phone);
+    console.log("company Numberrr", this.state.cNumber);
+    console.log("company Nameeee", this.state.cName);
+    console.warn("field error", this.FieldError);
     return (
       <Formik
         initialValues={{
@@ -124,6 +173,9 @@ export default class AboutMe extends Component {
           countryFirst: this.state.countryFirst,
           countrySecond: this.state.countrySecond,
           townn: this.state.townn,
+          phone: this.state.phone,
+          rAddress: this.state.rAddress,
+          vatNumber: this.state.vatNumber,
         }}
         validationSchema={validationSchema}
         onSubmit={this.handleSubmit}
@@ -262,6 +314,7 @@ export default class AboutMe extends Component {
                     <PhoneInput
                       variant="outlined"
                       placeholder="Contact Number"
+                      name="phone"
                       country={"in"}
                       value={this.state.phone}
                       // onChange={(phone, value) => {
@@ -275,17 +328,20 @@ export default class AboutMe extends Component {
                       //     });
                       // }}
                       // onChange={this.handleOnChange()}
-                      onChange={(phone, value, event) =>
-                        this.handleOnChange(phone, value, event)
-                      }
-                      // inputProps={{
-                      //   name: "phone",
-                      //   required: true,
-                      //   autoFocus: true,
-                      //   prefix: false,
-                      //   "aria-label": "Without label",
-                      // }}
+                      onChange={(event) => {
+                        this.handleOnChange(event)
+                        // setFieldValue("phone", phone);
+                        // this.setState({
+                        //   phone: phone,
+                        // });
+                      }}
+                      inputProps={{
+                        name: "phone",
+                        required: true,
+                        autoFocus: true,
+                      }}
                     />
+                    <FieldError error={errors.phone} touched={touched.phone} />
                   </Box>
 
                   <Box style={{ position: "relative" }}>
@@ -294,25 +350,41 @@ export default class AboutMe extends Component {
                       className="aboutMe"
                       style={{ height: "48px", width: "324px" }}
                       placeholder="Country"
-                      value={this.state.age}
+                      value={this.state.countryFirst}
                       onChange={this.dropDownHandle}
                       displayEmpty
                       inputProps={{ "aria-label": "Without label" }}
                     >
-                       <ListSubheader>
-                        <TextField variant="outlined" placeholder="Search" type="text" />
-                        <SearchIcon style={{ position: "relative", right: "310px", top: "5px",height:"18px",width:"18px"}}/>
+                      <ListSubheader>
+                        <TextField
+                          variant="outlined"
+                          placeholder="Search"
+                          type="text"
+                        />
+                        <SearchIcon
+                          style={{
+                            position: "relative",
+                            right: "310px",
+                            top: "5px",
+                            height: "18px",
+                            width: "18px",
+                          }}
+                        />
                       </ListSubheader>
-                      {this.state.countryTwo.map((countryTwo, id) => (
+                      {this.state.countryOne.map((countryOne, id) => (
                         <MenuItem
                           key={id}
-                          value={countryTwo}
+                          value={countryOne}
                           // style={webStyle.inputBackground}
                         >
-                          {countryTwo}
+                          {countryOne}
                         </MenuItem>
                       ))}
                     </Select>
+                    <FieldError
+                      error={errors.countryFirst}
+                      touched={touched.countryFirst}
+                    />
                   </Box>
                 </Box>
                 {/* ------------------------ */}
@@ -322,26 +394,42 @@ export default class AboutMe extends Component {
                       className="aboutMe"
                       variant="outlined"
                       style={{ height: "48px", width: "324px" }}
-                      value={this.state.age}
-                      onChange={this.dropDownHandle}
+                      value={this.state.countrySecond}
+                      onChange={this.dropDownHandleSec}
                       displayEmpty
                       inputProps={{ "aria-label": "Without label" }}
                     >
-                       <ListSubheader>
-                        <TextField variant="outlined" placeholder="Search" type="text" />
-                        <SearchIcon style={{ position: "relative", right: "310px", top: "5px",height:"18px",width:"18px"}}/>
+                      <ListSubheader>
+                        <TextField
+                          variant="outlined"
+                          placeholder="Search"
+                          type="text"
+                        />
+                        <SearchIcon
+                          style={{
+                            position: "relative",
+                            right: "310px",
+                            top: "5px",
+                            height: "18px",
+                            width: "18px",
+                          }}
+                        />
                       </ListSubheader>
-                      {this.state.countryOne.map((countryOne, id) => (
+                      {this.state.countryTwo.map((countryTwo, id) => (
                         <MenuItem
                           key={id}
-                          value={countryOne}
-                          style={{ color: "#000" }}
+                          value={countryTwo}
+                          // style={{ color: "#000" }}
                           // style={webStyle.inputBackground}
                         >
-                          {countryOne}
+                          {countryTwo}
                         </MenuItem>
                       ))}
                     </Select>
+                    <FieldError
+                      error={errors.countrySecond}
+                      touched={touched.countrySecond}
+                    />
                   </Box>
 
                   <Box style={{ position: "relative" }}>
@@ -350,27 +438,38 @@ export default class AboutMe extends Component {
                       className="aboutMe"
                       style={{ height: "48px", width: "324px" }}
                       placeholder="Country"
-                      value={this.state.age}
-                      onChange={this.dropDownHandle}
+                      value={this.state.townn}
+                      onChange={this.dropDownHandleTown}
                       displayEmpty
                       inputProps={{ "aria-label": "Without label" }}
                     >
                       <ListSubheader>
-                        <TextField variant="outlined" placeholder="Search" type="text" />
-                        <SearchIcon style={{ position: "relative", right: "310px", top: "5px",height:"18px",width:"18px"}}/>
+                        <TextField
+                          variant="outlined"
+                          placeholder="Search"
+                          type="text"
+                        />
+                        <SearchIcon
+                          style={{
+                            position: "relative",
+                            right: "310px",
+                            top: "5px",
+                            height: "18px",
+                            width: "18px",
+                          }}
+                        />
                       </ListSubheader>
-                      {this.state.countryTwo.map((countryTwo, id) => (
-                        <>
-                          <MenuItem
-                            key={id}
-                            value={countryTwo}
-                            // style={webStyle.inputBackground}
-                          >
-                            {countryTwo}
-                          </MenuItem>
-                        </>
+                      {this.state.town.map((town, id) => (
+                        <MenuItem
+                          key={id}
+                          value={town}
+                          // style={webStyle.inputBackground}
+                        >
+                          {town}
+                        </MenuItem>
                       ))}
                     </Select>
+                    <FieldError error={errors.townn} touched={touched.townn} />
                   </Box>
                 </Box>
                 <Box style={{ display: "flex", gap: "24px" }}>
@@ -398,37 +497,38 @@ export default class AboutMe extends Component {
                           variant="outlined"
                           placeholder="Company Name"
                           style={{ height: "48px", width: "100%" }}
-                          name="firstname"
-                          value={this.state.firstName}
-                          // onChange={(event) => {
-                          //   setFieldValue("firstname", event.target.value);
-                          //   this.setState({
-                          //     firstName: event.target.value,
-                          //   });
-                          // }}
+                          name="cName"
+                          value={this.state.cName}
+                          onChange={(event) => {
+                            setFieldValue("cName", event.target.value);
+                            this.setState({
+                              cName: event.target.value,
+                            });
+                          }}
                         />
-                        {/* <FieldError
-                      error={errors.firstName}
-                      touched={touched.firstName}
-                    /> */}
+                        <FieldError
+                          error={errors.cName}
+                          touched={touched.cName}
+                        />
                       </Box>
                       <Box style={{ maxWidth: "326px" }}>
                         <TextField
                           variant="outlined"
-                          placeholder="Last Name"
+                          placeholder="Company Number"
                           style={{ height: "48px", width: "100%" }}
-                          value={this.state.lastName}
-                          name="lastname"
-                          // onChange={(event) => {
-                          //   setFieldValue("lastname", event.target.value);
-                          //   this.setState({
-                          //     lastName: event.target.value,
-                          //   });
-                          // }}
+                          value={this.state.cNumber}
+                          type="number"
+                          name="cNumber"
+                          onChange={(event) => {
+                            setFieldValue("cNumber", event.target.value);
+                            this.setState({
+                              cNumber: event.target.value,
+                            });
+                          }}
                         />
                         <FieldError
-                          error={errors.lastName}
-                          touched={touched.lastName}
+                          error={errors.cNumber}
+                          touched={touched.cNumber}
                         />
                       </Box>
                     </Box>
@@ -443,37 +543,39 @@ export default class AboutMe extends Component {
                         <TextField
                           variant="outlined"
                           style={{ height: "48px", width: "100%" }}
-                          name="firstname"
-                          value={this.state.firstName}
-                          //   onChange={(event) => {
-                          //     setFieldValue("firstname", event.target.value);
-                          //     this.setState({
-                          //       firstName: event.target.value,
-                          //     });
-                          //   }}
+                          name="rAddress"
+                          placeholder="Registered Address"
+                          value={this.state.rAddress}
+                          onChange={(event) => {
+                            setFieldValue("rAddress", event.target.value);
+                            this.setState({
+                              rAddress: event.target.value,
+                            });
+                          }}
                         />
-                        {/* <FieldError
-                       error={errors.firstName}
-                       touched={touched.firstName}
-                     /> */}
+                        <FieldError
+                          error={errors.rAddress}
+                          touched={touched.rAddress}
+                        />
                       </Box>
                       <Box style={{ maxWidth: "326px" }}>
                         <TextField
                           variant="outlined"
                           style={{ height: "48px", width: "100%" }}
-                          value={this.state.lastName}
-                          name="lastname"
-                          // onChange={(event) => {
-                          //   setFieldValue("lastname", event.target.value);
-                          //   this.setState({
-                          //     lastName: event.target.value,
-                          //   });
-                          // }}
+                          value={this.state.vatNumber}
+                          name="vatNumber"
+                          placeholder="VAT Number if applicable"
+                          onChange={(event) => {
+                            setFieldValue("vatNumber", event.target.value);
+                            this.setState({
+                              vatNumber: event.target.value,
+                            });
+                          }}
                         />
-                        {/* <FieldError
-                      error={errors.lastName}
-                      touched={touched.lastName}
-                    /> */}
+                        <FieldError
+                          error={errors.vatNumber}
+                          touched={touched.vatNumber}
+                        />
                       </Box>
                     </Box>
                   </>
