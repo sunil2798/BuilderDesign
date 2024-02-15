@@ -1,0 +1,9 @@
+1) vim
+2) vim filename
+3) press i/insert key 
+4) ESC
+5) :wq / save & quit
+6) :w only save
+7) :q quit
+   :q! quit without save
+8) vim -R message.text   only read mode

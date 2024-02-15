@@ -1,0 +1,66 @@
+1) vim filename
+2) o / insert new line
+3) delete or backspace for delete
+4) a // append after cursor
+5) r replace single cursor
+6) esc + u  revert changes
+
+----------------------------------------------------
+
+h - Move cursor to left by one position
+l - Move cursor to right by one position
+k - Move cursor to upward direction by one line
+j - Move cursor to downward direction by one line
+
+0 zero - Move cursor to the beginning of current line
+$ - Move cursor to the end of current line
+ctrl + f - Scroll down entire page
+ctrl + b - Scroll up entire page
+
+
+-------------------------------------
+
+:n - jump to the nth line
+:0 - jump to the atart of filename
+:$ - jump to the end of file
+
+----------------------------------------
+
+w - Move cursor to the beginning of the next word
+e - Move cursor to the end of the current word
+b - move cursor to the beginningof the previous word
+
+------- Copy & Paste ------------
+
+dw - delete WORD FROM cursor position
+D - delete entire line from cursor position /cut
+dd - delete entire line / cut
+Y - Copies entire line / cut 
+yy - Copies entire line 
+p - Paste after cursor
+P - before cursor 
+:%d - Complete file empty
+
+----------------Search-----------------------------------
+
+1) /
+2) n -  next occurrence
+3) N -  previous occurrence
+4) :set hlsearch
+5) ?
+then 
+n - previous occurrence
+N - next occurrence
+
+6) :set ic (ignorecase)
+7) :set nonhlsearch
+
+------------ Search & replace --------------
+
+1) :%s/searchkeyword/replaceword 
+   Note: g  -  global
+         gc -  it will ask you which you want to replace
+
+   Ex- :%s/test/testing/g     =>it will replace in entire page
+       :%s/test/testing/gc    => it will replace which you want to replace
+
