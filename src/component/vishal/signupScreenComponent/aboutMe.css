@@ -3,6 +3,15 @@ input[type="text"]::placeholder {
   /* padding-left: 28px; */
   color: #0D0C22 !important;
 }
+
+input[type="text"].MuiInputBase-input {
+  padding: 0px 42px 0px !important;
+}
+.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiSelect-outlined.MuiOutlinedInput-input {
+  padding-left: 20px !important;
+}
+
+
 /* input {
   padding-left: 10px !important;
 } */

@@ -52,7 +52,7 @@ const validationSchema = Yup.object().shape({
     .required("required")
     .matches(/^\+\d{1,3}[- ]?\d{1,14}$/, {
       message: "Invalid number",
-      excludeEmptyString: false
+      excludeEmptyString: false,
     })
     .max(10)
     .required("Company Number is required"),
@@ -85,28 +85,31 @@ export default class AboutMe extends Component {
       dialCode: "",
       phone: "",
       countryOne: [
-        "April Tucker",
-        "Ralph Hubbard",
-        "Omar Alexander",
-        "Carlos Abbott",
-        "Bradley Wilkerson",
-        "Kelly Snyder",
+        `First country Name`,
+        `April Tucker`,
+        `Ralph Hubbard`,
+        `Omar Alexander`,
+        `Carlos Abbott`,
+        `Bradley Wilkerson`,
+        `Kelly Snyder`,
       ],
       countryTwo: [
-        "April Tucker",
-        "Ralph Hubbard",
-        "Omar Alexander",
-        "Carlos Abbott",
-        "Bradley Wilkerson",
-        "Kelly Snyder",
+        `Second country Name`,
+        `April Tucker`,
+        `Ralph Hubbard`,
+        `Omar Alexander`,
+        `Carlos Abbott`,
+        `Bradley Wilkerson`,
+        `Kelly Snyder`,
       ],
       town: [
-        "April Tucker",
-        "Ralph Hubbard",
-        "Omar Alexander",
-        "Carlos Abbott",
-        "Bradley Wilkerson",
-        "Kelly Snyder",
+        `Town Name`,
+        `April Tucker`,
+        `Ralph Hubbard`,
+        `Omar Alexander`,
+        `Carlos Abbott`,
+        `Bradley Wilkerson`,
+        `Kelly Snyder`,
       ],
     };
   }
@@ -127,6 +130,42 @@ export default class AboutMe extends Component {
     this.setState({
       townn: event.target.value,
     });
+  };
+
+  handleTownSearch = (event) => {
+    const search = event.target.value;
+    const filterCountrieNames = this.state.town.filter((country) =>
+      country.includes(search)
+    );
+
+    this.setState({
+      townn: filterCountrieNames,
+    });
+    event.stopPropagation();
+  };
+
+  handleFirstCountry = (event) => {
+    const search = event.target.value;
+    const filterCountrieNames = this.state.countryOne.filter((country) =>
+      country.includes(search)
+    );
+
+    this.setState({
+      countryFirst: filterCountrieNames,
+    });
+    event.stopPropagation();
+  };
+
+  handleSecondCountry = (event) => {
+    const search = event.target.value;
+    const filterCountrieNames = this.state.countryTwo.filter((country) =>
+      country.includes(search)
+    );
+
+    this.setState({
+      countrySecond: filterCountrieNames,
+    });
+    event.stopPropagation();
   };
 
   handleToggleChange = () => {
@@ -159,12 +198,13 @@ export default class AboutMe extends Component {
 
   render() {
     console.log("toggle", this.state.checked);
-    console.log("dropdown list check", this.state.age);
-    console.log("Country Two:", this.state.countryTwo);
-    console.log("phone.......", this.state.phone);
-    console.log("company Numberrr", this.state.cNumber);
-    console.log("company Nameeee", this.state.cName);
-    console.warn("field error", this.FieldError);
+    // console.log("dropdown list check", this.state.age);
+    // console.log("Country Two:", this.state.countryTwo);
+    // console.log("phone.......", this.state.phone);
+    // console.log("company Numberrr", this.state.cNumber);
+    // console.log("company Nameeee", this.state.cName);
+    // console.warn("field error", this.FieldError);
+    console.log("country searching", this.state.countryOne);
     return (
       <Formik
         initialValues={{
@@ -329,7 +369,7 @@ export default class AboutMe extends Component {
                       // }}
                       // onChange={this.handleOnChange()}
                       onChange={(event) => {
-                        this.handleOnChange(event)
+                        this.handleOnChange(event);
                         // setFieldValue("phone", phone);
                         // this.setState({
                         //   phone: phone,
@@ -360,6 +400,7 @@ export default class AboutMe extends Component {
                           variant="outlined"
                           placeholder="Search"
                           type="text"
+                          onClick={this.handleFirstCountry}
                         />
                         <SearchIcon
                           style={{
@@ -404,6 +445,7 @@ export default class AboutMe extends Component {
                           variant="outlined"
                           placeholder="Search"
                           type="text"
+                          onClick={this.handleSecondCountry}
                         />
                         <SearchIcon
                           style={{
@@ -448,6 +490,7 @@ export default class AboutMe extends Component {
                           variant="outlined"
                           placeholder="Search"
                           type="text"
+                          onClick={this.handleTownSearch}
                         />
                         <SearchIcon
                           style={{
