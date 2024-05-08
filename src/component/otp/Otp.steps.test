@@ -1,0 +1,333 @@
+import { defineFeature, loadFeature } from "jest-cucumber";
+import { shallow, ShallowWrapper } from "enzyme";
+import * as helpers from "../../../../framework/src/Helpers";
+import { runEngine } from "../../../../framework/src/RunEngine";
+import { Message } from "../../../../framework/src/Message";
+import { expect, jest, beforeAll, beforeEach } from "@jest/globals"
+import MessageEnum, {
+  getName,
+} from "../../../../framework/src/Messages/MessageEnum";
+import React from "react";
+import OTPInputAuth from "../../src/OTPInputAuth.web";
+import { Formik } from "formik";
+
+const navigation = require("react-navigation");
+
+const screenProps = {
+  navigation: {
+    navigate: jest.fn()
+  },
+  id: "otp-input-confirmation",
+};
+
+const feature = loadFeature(
+  "./__tests__/features/OTPInputAuth-scenario.web.feature"
+);
+
+defineFeature(feature, (test) => {
+  beforeEach(() => {
+    jest.resetModules()
+    jest.doMock('react-native', () => ({ Platform: { OS: 'web' } }))
+    jest.spyOn(helpers, 'getOS').mockImplementation(() => 'web');
+    const localStorageMock = {
+      getItem: jest.fn(),
+    }
+    
+  
+  });
+  beforeAll(() => {
+    global.setInterval = jest.fn().mockImplementation((params1: any, params2) => {
+      params1()
+    }) as any
+    global.setTimeout = jest.fn().mockImplementation((params1: any, params2) => {
+      params1()
+    }) as any
+  });
+
+  test("User navigates to OTPInputAuth", ({ given, when, then }) => {
+    let otpInputAuth: ShallowWrapper;
+    let instance: OTPInputAuth;
+    let formikTag: any
+    given("I am a User loading OTPInputAuth", () => {
+      otpInputAuth = shallow(<OTPInputAuth {...screenProps} />);
+    });
+
+    when("I navigate to the OTPInputAuth", () => {
+      instance = otpInputAuth.instance() as OTPInputAuth;
+      // instance.showAlert = jest.fn();
+
+instance.renderErrorfive("")
+instance.renderError("")
+instance.renderError("xhsjg")
+      instance.setState({timer:20, fiveMinuteTimer:300});
+      instance.startTimer()
+      instance.startFiveMinuteTimer();
+      instance.setState({timer:0, fiveMinuteTimer:0},() => {
+        instance.startFiveMinuteTimer();
+
+      });
+instance.setState({
+  errors:{
+    message:"sjdjsh"
+  }
+})
+
+
+
+
+      
+    });
+
+
+    then("OTPInputAuth will load with out errors", () => {
+
+      // instance.handleResendOtp();
+      instance.setState({
+        errors:{
+          message:""
+        }
+      })
+      
+      // instance.startTimer();
+      expect(otpInputAuth).toBeTruthy();
+      const formikTag1 = otpInputAuth.find(Formik).dive();
+      const handleSubmit = jest.fn()
+
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp1").props().onChange(
+        {
+          target: {
+            name: 'otp_code',
+            value: '1'
+          }
+        }, 'otp1', 'otp2'
+      );
+
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp1").props().onPaste(
+        {
+          target: {
+            name: 'otp_code',
+            value: '122121',
+          },
+          clipboardData: {
+            getData: jest.fn().mockReturnValue('122121')
+          }
+
+        }
+      );
+
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp1").props().onInput(
+        {
+          target: {
+            name: 'otp_code',
+            value: "655545"
+          }
+        }
+      );
+
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp2").props().onChange(
+        {
+          target: {
+            name: 'otp2',
+            value: '2'
+          }
+        }, 'otp2', 'otp3'
+      );
+
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp2").props().onPaste(
+        {
+          target: {
+            name: 'otp2',
+            value: '122121',
+          },
+          clipboardData: {
+            getData: jest.fn().mockReturnValue('122121')
+          }
+
+        }
+      );
+
+      const mockEvent = {
+        key: 'Backspace',
+        preventDefault: jest.fn(),
+      };
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp2").props().onKeyDown(
+        mockEvent,
+        'otp1', instance.state.otp2
+      );
+
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp2").props().onInput(
+        {
+          target: {
+            name: 'otp2',
+            value: "655545"
+          }
+        }
+      );
+
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp3").props().onChange(
+        {
+          target: {
+            name: 'otp3',
+            value: '2'
+          }
+        }, 'otp3', 'otp4'
+      );
+
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp3").props().onPaste(
+        {
+          target: {
+            name: 'otp3',
+            value: '122121',
+          },
+          clipboardData: {
+            getData: jest.fn().mockReturnValue('122121')
+          }
+
+        }
+      );
+
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp3").props().onKeyDown(
+        mockEvent,
+        'otp2', instance.state.otp3
+      );
+
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp3").props().onInput(
+        {
+          target: {
+            name: 'otp3',
+            value: "655545"
+          }
+        }
+      );
+
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp4").props().onKeyDown(
+        mockEvent,
+        'otp2', instance.state.otp4
+      );
+
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp4").props().onChange(
+        {
+          target: {
+            name: 'otp4',
+            value: '2'
+          }
+        }, 'otp4', 'otp5'
+      );
+
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp4").props().onPaste(
+        {
+          target: {
+            name: 'otp4',
+            value: '122121',
+          },
+          clipboardData: {
+            getData: jest.fn().mockReturnValue('122121')
+          }
+
+        }
+      );
+
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp4").props().onInput(
+        {
+          target: {
+            name: 'otp4',
+            value: "655545"
+          }
+        }
+      );
+
+
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp5").props().onChange(
+        {
+          target: {
+            name: 'otp5',
+            value: '2'
+          }
+        }, 'otp5', 'otp6'
+      );
+
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp5").props().onPaste(
+        {
+          target: {
+            name: 'otp5',
+            value: '122121',
+          },
+          clipboardData: {
+            getData: jest.fn().mockReturnValue('122121')
+          }
+        }
+      );
+
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp5").props().onKeyDown(
+        mockEvent,
+        'otp2', instance.state.otp5
+      );
+
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp5").props().onInput(
+        {
+          target: {
+            name: 'otp5',
+            value: "655545"
+          }
+        }
+      );
+
+
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp6").props().onChange(
+        {
+          target: {
+            name: 'otp6',
+            value: '2'
+          }
+        }, 'otp6'
+      );
+
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp6").props().onPaste(
+        {
+          target: {
+            name: 'otp6',
+            value: '122121',
+          },
+          clipboardData: {
+            getData: jest.fn().mockReturnValue('122121')
+          }
+
+        }
+      );
+
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp6").props().onKeyDown(
+        mockEvent,
+        'otp2', instance.state.otp6
+      );
+
+      formikTag1.findWhere((node) => node.prop("data-test-id") === "otp6").props().onInput(
+        {
+          target: {
+            name: 'otp6',
+            value: "655545"
+          }
+        }
+      );
+
+      formikTag1.findWhere((node) => node.prop("dataTest-id") == "resetButton").simulate('click')
+
+      formikTag1.findWhere((node) => node.prop("dataTest-id") == "submitBu").props().onClick();
+      // instance.handleSubmit();
+    });
+    when("when user click on resend otp",()=>{
+      instance.setState({sendOtpClickCount:3,isFiveMinuteTimerActive:false});
+      instance.handleResendOtp();
+      instance.handleNavigateMobileRegister();
+      instance.handleResendOtp();
+      instance.setState({ 
+        errors: {
+          message: "Enter Valid OTP"
+        }
+      });
+      instance.custumValidate();
+      instance.handleResendOtp();
+
+    })
+
+  });
+});

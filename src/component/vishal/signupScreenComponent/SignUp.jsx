@@ -9,7 +9,7 @@ const validationSchema = Yup.object().shape({
   email: Yup.string()
     .required("Please enter your email")
     .matches(
-      /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+      /^[a-zA-Z0-9._+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
       "The password should have at least one lower case and one upper case characters."
     ),
   password: Yup.string()

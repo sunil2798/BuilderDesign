@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Box, TextField, Typography } from "@material-ui/core";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import CameraAltOutlinedIcon from "@material-ui/icons/CameraAltOutlined";
 
 export default class DragAndDrop extends Component {
   constructor(props) {
@@ -127,6 +128,30 @@ export default class DragAndDrop extends Component {
                 style={{ height: "100%", width: "100%", borderRadius: "50px" }}
               />
             </Box>
+            <div
+               style={{
+                        position: "relative",
+                        bottom: "100px",
+                        left: "0px",
+                        height: "100%",
+                        width: "100%",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderBottomLeftRadius: "50%",
+                        borderBottomRightRadius: "50%",
+                        overflow:"hidden",
+                      }}
+                    >
+                       
+                      <div style={{ backgroundColor: "rgba(0, 0, 0, 0.6)",height: "27px",
+                        width: "100%", position:"absolute",bottom:"0px"}}>
+
+                      <CameraAltOutlinedIcon
+                        style={{ height: "20px", width: "20px", color: "#FFF" }}
+                        />
+                      </div>
+             </div>         
             {(!this.state.imageButton ||
               this.state.isDragOver ||
               this.state.isMouseOver) && (
