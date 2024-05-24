@@ -28,6 +28,7 @@ import SignUpFormik from './component/vishal/SignUpFormik';
 import Carasoul from './component/carasoul/Carasoul';
 import MultiCarasoul from './component/carasoul/MultiCarasoul';
 import Next from './component/Next';
+import DrakAndLighMode from './component/DrakAndLighMode';
 
 function App() {
   return (
@@ -61,6 +62,7 @@ function App() {
         <Route path='/carasoul' element={<Carasoul />} />
         <Route path='/multicarasoul' element={<MultiCarasoul />} />
         <Route path='/next' element={<Next />} />
+        <Route path='/darklight' element={<DrakAndLighMode />} />
 
       </Routes>
     </BrowserRouter>
